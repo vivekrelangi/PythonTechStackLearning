@@ -1879,3 +1879,451 @@ print(subseq())"""
 s="abc"
 t="ahbgdc"
 print(isSubsequence(s,t))"""
+"""def is_palindrome(word):
+    word=word.lower()
+    if len(word)<=1:
+        return True
+    
+    if word[0]==word[-1]:
+        return is_palindrome(word[1:-1])
+    else:
+        return False
+    #Remove pass and write your logic here
+
+#Provide different values for word and test your program
+result=is_palindrome("MadAMa")
+if(result):
+    print("The given word is a Palindrome")
+else:
+    print("The given word is not a Palindrome")"""
+"""class Mobile:
+    def __init__(self):
+        print("Inside constructor")
+mob1=Mobile()"""
+"""class Mobile:
+    def __init__(self):
+        print("Id of self in constructor", id(self))
+mob1=Mobile()"""
+"""class Mobile:
+    def __init__(self):
+        print("Inside constructor")
+        
+
+mob1=Mobile()
+mob2=Mobile()"""
+"""class Mobile:
+    def __init__(self, brand, price):
+        print("Inside constructor")
+        self.brand = brand
+        self.price = price
+
+mob1=Mobile("Apple", 20000)
+print("Mobile 1 has brand", mob1.brand, "and price", mob1.price)
+
+mob2=Mobile("Samsung",3000)
+print("Mobile 2 has brand", mob2.brand, "and price", mob2.price)
+"""
+"""class Mobile:
+    def __init__(self,one,two):
+        print("Inside constructor")
+
+#Uncomment each line below. Try it out and observe the output.
+
+#mob1=Mobile()
+mob1=Mobile(100,200,300)"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        print("Id of self in constructor", id(self))
+        self.price = price
+        self.brand = brand
+
+mob1=Mobile(1000, "Apple")
+print("Id of mob1 in driver code", id(mob1))
+
+mob2=Mobile(1000, "Apple")
+print("Id of mob2 in driver code", id(mob2))"""
+"""class Mobile:
+    def __init__(self):
+        print ("Inside the Mobile constructor")
+        self.brand = None
+        brand = "Apple" #This is a local variable.
+        #Variables without self are local and they dont
+        #affect the attributes.
+
+        #Local varaibles cannot be accessed outside the init
+        #Using self creates attributes which are
+        #accessible in other methods as well
+
+mob1=Mobile()
+print(mob1.brand)#This does not print Apple
+#This prints None because brand=Apple creates
+#a local variable and it does not affect the attribute"""
+"""class Mobile:
+    def __init__(self):
+        print("Inside constructor")
+
+    def purchase (self):
+        print("Purchasing a mobile")
+
+mob1=Mobile()
+mob1.purchase()"""
+"""class Mobile:
+    def __init__(self, brand, price):
+        print("Inside constructor")
+        self.brand = brand
+        self.price = price
+        
+    def purchase(self):
+        print("Purchasing a mobile")
+        print("This mobile has brand", self.brand, "and price", self.price)
+        
+print("Mobile-1")
+mob1=Mobile("Apple", 20000)
+mob1.purchase()
+
+print("Mobile-2")
+mob2=Mobile("Samsung",3000)
+mob2.purchase()"""
+"""class Mobile:
+    def display(self):
+        print("Displaying details")
+
+    def purchase(self):
+        self.display()
+        print("Calculating price")
+
+Mobile().purchase()"""
+"""class Mobile:
+    def __init__(self,price,brand):
+        print (id(self))
+        self.price = price
+        self.brand = brand
+
+    def return_product(self):
+        print (id(self))
+        print ("Brand being returned is ",self.brand," and price is ",self.price)
+
+mob1 = Mobile(1000, "Apple")
+print ("Mobile 1 has id", id(mob1))
+
+mob2=Mobile(2000, "Samsung")
+print ("Mobile 2 has id", id(mob2))
+
+mob2.return_product()
+Mobile.return_product(mob2)"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+mob1=Mobile(1000, "Apple")
+print(mob1.price)
+#We are able to access the object
+#in subsequent lines because we
+#have a reference variable. This is
+#like holding a balloon with a ribbon"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+print(Mobile(1000, "Apple").price)
+#After the above line the Mobile
+# object created is lost and unusable"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        print ("Inside constructor")
+        self.price = price
+        self.brand = brand
+
+mob1=Mobile(1000, "Apple")
+mob2=mob1
+print ("Id of object referred by mob1 reference variable is :", id(mob1))
+print ("Id of object referred by mob2 reference variable is :", id(mob2))
+#mob1 and mob2 are reference variables to the same object"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+mob1=Mobile(1000, "Apple")
+print("Price of mobile 1 :", mob1.price)
+
+mob2=mob1
+mob2.price=3000
+
+print("Price of mobile 1 :", mob1.price)
+print("Price of mobile 2 :", mob2.price)"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+mob1=Mobile(1000, "Apple")
+
+mob2=mob1
+mob2=Mobile(2000," Samsung")
+mob2.price=3000
+
+print("Mobile", "Id","Price")
+print("mob1", id(mob1), mob1.price)
+print("mob2", id(mob2), mob2.price)"""
+"""
+#Tried
+class Vehicle:
+    def __init__(self,mileage,fuel_left):
+        self.mileage=mileage
+        self.fuel_left=fuel_left
+        
+    def identify_disctance_that_can_be_travelled(self):
+        distance=0
+        if self.fuel_left<=5:
+            return distance
+        else:
+            fuelwithoutreserve=self.fuel_left-5
+            distance=fuelwithoutreserve*self.mileage
+            return distance
+    def identify_distance_travelled(self,initial_fuel):
+        return (initial_fuel-self.fuel_left)*self.mileage
+
+v=Vehicle(20,2)
+print(v.identify_disctance_that_can_be_travelled())
+print(v.identify_distance_travelled(3))"""
+"""
+#Actual Class
+class Vehicle:
+    def __init__(self):
+        self.fuel_left=None
+        self.mileage=None
+        self.initial_fuel=10
+        
+    def identify_distance_that_can_be_travelled(self):
+        if self.fuel_left>5:
+            self.fuel=self.fuel_left-5
+            self.distance=self.fuel*self.mileage
+            return self.distance
+        else:
+            return 0
+        
+    def identify_distance_travelled(self,initial_fuel):
+        self.initial_fuel=initial_fuel
+        self.fuel=self.initial_fuel-self.fuel_left
+        self.distance=self.fuel*self.mileage
+        return self.distance
+        
+v1=Vehicle()
+v1.mileage=50
+v1.fuel_left=7
+print(v1.identify_distance_that_can_be_travelled())
+print(v1.identify_distance_travelled(20))"""
+"""class Mobile:
+    def __init__(self, brand, price):
+        print("Inside constructor")
+        self.brand = brand
+        self.price = price
+    def purchase(self):
+        print("Purchasing a mobile")
+        print("This mobile has brand", self.brand, "and price", self.price)
+print("Mobile-1")
+mob1=Mobile("Apple", 20000)
+mob1.purchase()
+print("Mobile-2")
+mob2=Mobile("Samsung",3000)
+mob2.purchase()"""
+"""class Customer:
+    def __init__(self, cust_id, name, age, wallet_balance):
+        self.cust_id = cust_id
+        self.name = name
+        self.age = age
+        self.wallet_balance = wallet_balance
+
+    def update_balance(self,amount):
+        if amount < 1000 and amount > 0:
+            self.wallet_balance += amount
+
+    def show_balance(self):
+            print("The balance is ",self.wallet_balance)
+
+c1=Customer(100, "Gopal", 24, 1000)
+c1.update_balance(500)
+c1.show_balance()"""
+"""class Customer:
+    def __init__(self, cust_id, name, age, wallet_balance):
+        self.cust_id = cust_id
+        self.name = name
+        self.age = age
+        self.wallet_balance = wallet_balance
+
+    def update_balance(self, amount):
+        if amount < 1000 and amount > 0:
+            self.wallet_balance += amount
+
+    def show_balance(self):
+        print ("The balance is",self.wallet_balance)
+
+c1=Customer(100, "Gopal", 24, 1000)
+c1.wallet_balance = 10000000000
+
+c1.show_balance()"""
+"""class Customer:
+    def __init__(self, cust_id, name, age, wallet_balance):
+        self.cust_id = cust_id
+        self.name = name
+        self.age = age
+        self.__wallet_balance = wallet_balance
+
+    def update_balance(self, amount):
+        if amount < 1000 and amount > 0:
+            self.__wallet_balance += amount
+
+    def show_balance(self):
+        print ("The balance is ",self.__wallet_balance)
+
+c1=Customer(100, "Gopal", 24, 1000)
+#print(c1.__wallet_balance)
+c1.update_balance(500)
+c1.show_balance()"""
+"""class Customer:
+    def __init__(self, cust_id, name, age, wallet_balance):
+        self.cust_id = cust_id
+        self.name = name
+        self.age = age
+        self.__wallet_balance = wallet_balance
+
+    def update_balance(self, amount):
+        if amount < 1000 and amount > 0:
+            self.__wallet_balance += amount
+
+    def show_balance(self):
+        print ("The balance is ",self.__wallet_balance)
+
+c1=Customer(100, "Gopal", 24, 1000)
+c1.__wallet_balance = 10000000000
+c1.show_balance()"""
+"""class Customer:
+    def __init__(self, cust_id, name, age,wallet_balance):
+        self.cust_id = cust_id
+        self.name = name
+        self.age = age
+        self.__wallet_balance = wallet_balance
+
+    def update_balance(self, amount):
+        if amount < 1000 and amount> 0:
+            self.__wallet_balance += amount
+
+    def show_balance(self):
+        print ("The balance is ",self.__wallet_balance)
+
+c1=Customer(100, "Gopal", 24, 1000)
+c1._Customer__wallet_balance = 10000000000
+c1.show_balance()"""
+"""class Customer:
+    def __init__(self, id, name, age, wallet_balance):
+        self.id = id
+        self.name = name
+        self.age = age
+        self.__wallet_balance = wallet_balance
+
+    def set_wallet_balance(self, amount):
+        if amount < 1000 and amount > 0:
+            self.__wallet_balance = amount
+
+    def get_wallet_balance(self):
+        return self.__wallet_balance
+
+c1=Customer(100, "Gopal", 24, 1000)
+c1.set_wallet_balance(120)
+print(c1.get_wallet_balance())"""
+"""class Athlete:
+    def __init__(self,name,gender):
+        self.__name=name
+        self.__gender=gender
+
+    def set_name(self,name):
+        self.__name=name
+    def set_gender(self,gender):
+        self.__gender=gender
+    def get_name(self):
+        return self.__name
+    def get_gender(self):
+        return self.__gender
+    def running(self):
+        if(self.__gender=="girl"):
+            print("150mtr running")
+        else:
+            print("200mtr running")
+                                    
+a=Athlete("yo","male")
+print(a.get_gender())
+print(a.get_name())
+a.set_gender("female")
+a.set_name("yoyo")
+print(a.get_gender())
+print(a.get_name())
+a.running()
+"""
+"""class Customer:
+    def __init__(self, id, name, age, wallet_balance):
+        self.id = id
+        self.name = name
+        self.age = age
+        self.__wallet_balance = wallet_balance
+    def set_wallet_balance(self, amount):
+        if amount < 1000 and amount>  0:
+            self.__wallet_balance = amount
+    def get_wallet_balance(self):
+        return self.__wallet_balance
+c1=Customer(100, "Gopal", 24, 1000)
+c1.set_wallet_balance(120)
+print(c1.get_wallet_balance())"""
+#Tried Class
+"""class Vehicle:
+    def __init__(self) -> None:
+        self.__vehicle_id=None
+        self.__vehicle_type=None
+        self.__vehicle_cost=None
+        self.__premium_amount=None
+    
+    def set_id(self,vehicle_id):
+        self.__vehicle_id=vehicle_id
+
+    def set_type(self,vehicle_type):
+        if vehicle_type=="Two Wheeler" or vehicle_type=="Four Wheeler":
+            self.__vehicle_type=vehicle_type
+        else:
+            print("Invalid vehicle type entered valid types are Two Wheeler and Four Wheeler try again with valid types")
+
+    def set_cost(self,vehicel_cost):
+        self.__vehicle_cost=vehicel_cost
+
+    def get_id(self):
+        return self.__vehicle_id
+    
+    def get_type(self):
+        return self.__vehicle_type
+    
+    def get_cost(self):
+        return self.__vehicle_cost
+    
+    def get_premium(self):
+        return self.__premium_amount
+    
+    def calculate_premium(self):
+        if self.__vehicle_type=="Two Wheeler":
+            self.__premium_amount=0.2*self.__vehicle_cost
+        elif self.__vehicle_type=="Four Wheeler":
+            self.__premium_amount=0.6*self.__vehicle_cost
+        else:
+            print("Invalid vehicle type")
+
+    def display_vehicle_details(self):
+        print("Vehicle id:",self.__vehicle_id)
+        print("Vehicle type:",self.__vehicle_type)
+        print("Vehicle cost:",self.__vehicle_cost)
+        print("Premium amount:",self.__premium_amount)"""
+
+
+
+
+
+
