@@ -2377,7 +2377,88 @@ print(scanner.scan("EMP003", laptop1))  # Expected output: False (Laptop does no
 print(scanner.scan("EMP003", laptop3))  # Expected output: True (Laptop matches and not expired)
 print(scanner.scan("EMP004", laptop3))  # Expected output: False (Employee ID not found)
 """
+"""def find_factors(num):
+    #Accepts a number and returns the list of all the factors of a given number
+    factors = []
+    for i in range(2,(num+1)):
+        if(num%i==0):
+            factors.append(i)
+    return factors
 
+def is_prime(num, i):
+    #Accepts the number num and num/2 --> i and returns True if the number is prime ,else returns False
+    if(i==1):
+        return True
+    elif(num%i==0):
+        return False
+    else:
+        return(is_prime(num,i-1))
+
+def find_largest_prime_factor(list_of_factors):
+    return max(list_of_factors)
+    #Accepts the list of factors and returns the largest prime factor
+
+def find_f(num):
+    factors=find_factors(num)
+    prime_factors=[]
+    for i in factors:
+        pf=is_prime(i,i//2)
+        if pf == True:
+            prime_factors.append(i)
+    r=find_largest_prime_factor(prime_factors)
+    return r
+    #Accepts the number and returns the largest prime factor of the number
+
+def find_g(num):
+    res=0
+    for inc in range(num,num+10):
+        res+=find_f(inc)
+    return res
+    #Accepts the number and returns the sum of the largest prime factors of the 9 consecutive numbers starting from the given number
+
+#Note: Invoke function(s) from other function(s), wherever applicable.
+
+print(find_g(10))"""
+"""def find_factors(num):
+    # Accepts a number and returns the list of all the factors of a given number
+    factors = []
+    for i in range(2, num + 1):
+        if num % i == 0:
+            factors.append(i)
+    return factors
+
+def is_prime(num, i):
+    # Accepts the number num and num/2 --> i and returns True if the number is prime, else returns False
+    if i == 1:
+        return True
+    elif num % i == 0:
+        return False
+    else:
+        return is_prime(num, i - 1)
+
+def find_largest_prime_factor(list_of_factors):
+    # Accepts the list of factors and returns the largest prime factor
+    largest_prime = None
+    for factor in list_of_factors:
+        if is_prime(factor, factor // 2):
+            largest_prime = factor
+    return largest_prime
+
+def find_f(num):
+    # Accepts the number and returns the largest prime factor of the number
+    factors = find_factors(num)
+    return find_largest_prime_factor(factors)
+
+def find_g(num):
+    # Accepts the number and returns the sum of the largest prime factors of the 9 consecutive numbers starting from the given number
+    total_sum = 0
+    for i in range(num, num + 9):
+        total_sum += find_f(i)
+    return total_sum
+
+# Note: Invoke function(s) from other function(s), wherever applicable.
+
+print(find_g(10))"""
 
 
 
