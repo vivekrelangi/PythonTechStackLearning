@@ -2458,7 +2458,48 @@ def find_g(num):
 # Note: Invoke function(s) from other function(s), wherever applicable.
 
 print(find_g(10))"""
+"""def findMaxAverage( nums: list[int], k: int):
+    e=len(nums)
+    s=0
+    d=e-k
+    lofk=k
+    avgs=[]
+    while s<=d and k<=e:
+        l=nums[s:k]
+        #print(l,s,k)
+        sum=0
+        for i in l:
+            sum+=i
+        avg=sum/lofk
+        #print(avg)
+        avgs.append(avg)
+        s+=1
+        k+=1
+    return max(avgs)
+    #print(l,s,k)"""
+"""def findMaxAverage(nums, k):
+    # Calculate the sum of the first 'k' elements
+    current_sum = sum(nums[:k])
+    max_sum = current_sum
+    
+    # Slide the window across the array
+    for i in range(k, len(nums)):
+        # Adjust the sum by removing the element leaving the window
+        # and adding the new element entering the window
+        current_sum += nums[i] - nums[i - k]
+        
+        # Update the maximum sum encountered so far
+        max_sum = max(max_sum, current_sum)
+    
+    # Return the maximum average
+    return max_sum / k
 
+# Example usage
+nums = [1, 12, -5, -6, 50, 3]
+k = 4
+result = findMaxAverage(nums, k)
+print(result)  # Output should be 12.75
+"""
 
 
 
