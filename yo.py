@@ -2395,23 +2395,22 @@ def is_prime(num, i):
         return(is_prime(num,i-1))
 
 def find_largest_prime_factor(list_of_factors):
-    return max(list_of_factors)
+    prime_factor=None
+    for i in list_of_factors:
+        pf=is_prime(i,i//2)
+        if pf == True:
+            prime_factor=i
+    return prime_factor
     #Accepts the list of factors and returns the largest prime factor
 
 def find_f(num):
     factors=find_factors(num)
-    prime_factors=[]
-    for i in factors:
-        pf=is_prime(i,i//2)
-        if pf == True:
-            prime_factors.append(i)
-    r=find_largest_prime_factor(prime_factors)
-    return r
+    return find_largest_prime_factor(factors)
     #Accepts the number and returns the largest prime factor of the number
 
 def find_g(num):
     res=0
-    for inc in range(num,num+10):
+    for inc in range(num,num+9):
         res+=find_f(inc)
     return res
     #Accepts the number and returns the sum of the largest prime factors of the 9 consecutive numbers starting from the given number
