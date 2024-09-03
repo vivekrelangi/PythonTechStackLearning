@@ -2321,7 +2321,62 @@ print(c1.get_wallet_balance())"""
         print("Vehicle type:",self.__vehicle_type)
         print("Vehicle cost:",self.__vehicle_cost)
         print("Premium amount:",self.__premium_amount)"""
+"""class Laptop:
+    def __init__(self, qrcode, allocation_expiry_date):
+        self.__qrcode = qrcode
+        self.__allocation_expiry_date = allocation_expiry_date
 
+    def get_qrcode(self):
+        return self.__qrcode
+
+    def is_expired(self):
+        return self.__allocation_expiry_date
+
+
+class Scanner:
+    emp_laptop_dict = {}
+
+    def __init__(self, emp_laptop_dict):
+        Scanner.emp_laptop_dict = emp_laptop_dict
+
+    def validate_expiry_date(self, laptop):
+        return not laptop.is_expired()
+
+    def validate_emp_laptop(self, emp_id, laptop):
+        if emp_id in Scanner.emp_laptop_dict:
+            assigned_laptop = Scanner.emp_laptop_dict[emp_id]
+            if assigned_laptop.get_qrcode() == laptop.get_qrcode():
+                return self.validate_expiry_date(assigned_laptop)
+        return False
+
+    def scan(self, emp_id, laptop):
+        return self.validate_emp_laptop(emp_id, laptop)
+
+
+# Test the implementation
+
+# Creating Laptop objects
+laptop1 = Laptop("QR001", False)  # Not expired
+laptop2 = Laptop("QR002", True)   # Expired
+laptop3 = Laptop("QR003", False)  # Not expired
+
+# Creating an employee-laptop dictionary
+emp_laptop_dict = {
+    "EMP001": laptop1,
+    "EMP002": laptop2,
+    "EMP003": laptop3
+}
+
+# Creating a Scanner object
+scanner = Scanner(emp_laptop_dict)
+
+# Testing the scan method
+print(scanner.scan("EMP001", laptop1))  # Expected output: True (Laptop matches and not expired)
+print(scanner.scan("EMP002", laptop2))  # Expected output: False (Laptop matches but expired)
+print(scanner.scan("EMP003", laptop1))  # Expected output: False (Laptop does not match)
+print(scanner.scan("EMP003", laptop3))  # Expected output: True (Laptop matches and not expired)
+print(scanner.scan("EMP004", laptop3))  # Expected output: False (Employee ID not found)
+"""
 
 
 
