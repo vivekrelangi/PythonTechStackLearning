@@ -2500,6 +2500,60 @@ k = 4
 result = findMaxAverage(nums, k)
 print(result)  # Output should be 12.75
 """
+"""#Tried
+def find_smallest_number(num):
+    #start writing your code here
+    if num==0:
+        return 0
+    elif num==1:
+        return 1
+    elif num==2:
+        return 2
+    for i in range(3,100001):
+        divisorcount=0
+        for j in range(1,100001):
+            if i%j==0:
+                divisorcount+=1
+        if divisorcount==num:
+            return i
+
+num=16
+print("The number of divisors :",num)
+result=find_smallest_number(num)
+print("The smallest number having",num," divisors:",result)"""
+"""#Correct
+def find_smallest_number(num):
+    try:
+        if not isinstance(num, int) or num <= 0:
+            raise ValueError("Input must be a positive integer.")
+        
+        def count_divisors(n):
+            count = 0
+            for i in range(1, int(n**0.5) + 1):
+                if n % i == 0:
+                    if i == n // i:
+                        count += 1
+                    else:
+                        count += 2
+            return count
+
+        smallest_number = 1
+        while count_divisors(smallest_number) != num:
+            smallest_number += 1
+        
+        return smallest_number
+    
+    except ValueError as ve:
+        print(f"ValueError: {ve}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+# Testing the function
+num = 16
+print("The number of divisors:", num)
+result = find_smallest_number(num)
+if result:
+    print("The smallest number having", num, "divisors:", result)"""
 
 
 
