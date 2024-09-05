@@ -2554,6 +2554,14 @@ print("The number of divisors:", num)
 result = find_smallest_number(num)
 if result:
     print("The smallest number having", num, "divisors:", result)"""
-
+"""def largestAltitude(gain: list[int]):
+    alts=[0]
+    ind=0
+    for g in gain:
+        alts.append(g+alts[ind])
+        ind+=1
+    return max(alts)
+gain = [-5,1,5,0,-7]
+print(largestAltitude(gain))"""
 
 
