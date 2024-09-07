@@ -2563,5 +2563,115 @@ if result:
     return max(alts)
 gain = [-5,1,5,0,-7]
 print(largestAltitude(gain))"""
+"""def find_ten_substring(num_str):
+    pass
+    #Remove pass and write your logic here
+
+num_str="2825302"
+print("The number is:",num_str)
+result_list=find_ten_substring(num_str)
+print(result_list)"""
+"""class Laptop:
+    def __init__(self, grcode, expiry):
+        self.__grcode = grcode
+        self.__expiry = expiry
+
+    def get_grcode(self):
+        return self.__grcode
+
+    def get_expiry(self):
+        return self.__expiry
+
+
+class Scanner:
+    #self.__emp_laptop_dict = {} 
+
+    def __init__(self, emp_laptop_dict):
+        self.__emp_laptop_dict = emp_laptop_dict
+        #emp_laptop_dict=emp_laptop_dict
+
+    def validate_expiry_date(self, laptop):
+        return not laptop.get_expiry()
+
+    def validate_emp_laptop(self, empid, laptop):
+        if empid in self.__emp_laptop_dict:
+            assigned_laptop = self.__emp_laptop_dict[empid]
+            if assigned_laptop.get_grcode() == laptop.get_grcode():
+                return self.validate_expiry_date(assigned_laptop)
+        return False
+
+    def scan(self, empid, laptop):
+        return self.validate_emp_laptop(empid, laptop)
+
+
+# Test the implementation
+
+# Creating Laptop objects
+laptop1 = Laptop("QR001", False)  # Not expired
+laptop2 = Laptop("QR002", True)   # Expired
+laptop3 = Laptop("QR003", False)  # Not expired
+laptop4 = Laptop("QR004", False)  # Not expired
+
+# Step 2: Initializing emp_laptop_dict with employee ID as the key and Laptop objects as values
+emp_laptop_dict = {
+    101: laptop1,  # Employee 101 is assigned laptop1 (QR001)
+    102: laptop2,  # Employee 102 is assigned laptop2 (QR002)
+    103: laptop3   # Employee 103 is assigned laptop3 (QR003)
+}
+
+# Step 3: Creating a Scanner object using the emp_laptop_dict
+scanner = Scanner(emp_laptop_dict)
+
+# Step 4: Testing the scan method by passing different empid and laptop combinations
+print(scanner.scan(101, laptop1))  # Expected: True (Correct laptop, not expired)
+print(scanner.scan(102, laptop2))  # Expected: False (Laptop is expired)
+print(scanner.scan(103, laptop1))  # Expected: False (Employee 103 does not have laptop1)
+print(scanner.scan(101, laptop3))  # Expected: False (Employee 101 does not have laptop3)
+print(scanner.scan(103, laptop3))  # Expected: True (Correct laptop, not expired)
+print(scanner.scan(104, laptop4))  # Expected: False (Employee 104 is not in the dictionary)"""
+"""def pivotIndex(nums):
+    p=0
+    while p<len(nums):
+        leftsum=0
+        rightsum=0
+        if p!=0:
+            for i in range(0,p):
+                leftsum+=nums[i]
+        if p!=len(nums)-1:
+            for i in range(p+1,len(nums)):
+                rightsum+=nums[i]
+        if leftsum==rightsum:
+            return p
+        #print(p,leftsum,rightsum)
+        if p==len(nums)-1:
+            break
+        p+=1
+    return -1
+
+print(pivotIndex([1,2,3]))"""
+"""def pivotIndex(nums):
+    sumLeft=[]
+    sumRight=[]
+    #for i in range(len(nums)):
+        
+    for i in range(len(nums)):
+        sumLeft.append(0)
+        sumRight.append(0)
+        sumLeft[i]=sum(nums[0:i])
+        #for j in range(i):
+            #sumLeft[i]+=nums[j]
+        sumRight[i]=sum(nums[i+1:len(nums)])
+        #for k in range(i+1,len(nums)):
+            #sumRight[i]+=nums[k]
+        if sumLeft[i]==sumRight[i]:
+            return i
+    #print(sumLeft,sumRight)    
+    return -1
+
+print(pivotIndex([1,2,3]))
+"""
+
+
+
 
 
