@@ -2670,6 +2670,117 @@ print(pivotIndex([1,2,3]))"""
 
 print(pivotIndex([1,2,3]))
 """
+"""class Rectangle:
+    def __init__(self, length: int, width: int):
+        self.length = length
+        self.width = width
+
+    def __iter__(self):
+        yield {'length': self.length}
+        yield {'width': self.width}
+
+rect = Rectangle(10, 5)
+for dim in rect:
+    print(dim)
+
+# Output:
+# {'length': 10}
+# {'width': 5}"""
+"""# signals.py
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+import time
+
+@receiver(post_save, sender=User)
+def my_signal_handler(sender, instance, **kwargs):
+    print("Signal started")
+    time.sleep(5)  # Simulating a long-running task
+    print("Signal finished")
+
+# views.py
+from django.contrib.auth.models import User
+
+def create_user(request):
+    print("Before user creation")
+    user = User.objects.create(username="new_user")  # This triggers the post_save signal
+    print("After user creation")
+
+# Output:
+# Before user creation
+# Signal started
+# (5 seconds delay)
+# Signal finished
+# After user creation"""
+"""def findDifference(nums1: list[int], nums2: list[int]) -> list[list[int]]:
+    s1=list(set(nums1))
+    s2=list(set(nums2))
+    c=[]
+    for i in s1:
+        if i in s2:
+            c.append(i)
+    print(s1,s2,c)
+    for i in c:
+        if i in s1:
+            s1.remove(i)
+        if i in s2:
+            s2.remove(i)
+    r=[s1,s2]
+    return r
+
+print(findDifference([1,2,3],[2,4,6]))"""
+"""
+#Tried answer
+class RecentCounter:
+
+    def __init__(self):
+        self.counter=0
+        self.requests=[]  
+        self.r=[]     
+
+    def ping(self, t: int) -> int:
+        self.counter=0
+        self.requests.append(t)
+        self.r=[t-3000,t]
+        for i in self.requests:
+            #print("i being checked:",i)
+            if i in range(self.r[0],self.r[1]+1):
+                #print(i)
+                self.counter+=1
+        return self.counter
+        
+
+
+# Your RecentCounter object will be instantiated and called as such:
+obj = RecentCounter()
+param_1 = obj.ping(1)
+print(obj.requests,obj.r,obj.counter)
+param_2 = obj.ping(100)
+print(obj.requests,obj.r,obj.counter)
+param_3 = obj.ping(3001)
+print(obj.requests,obj.r,obj.counter)
+param_4 = obj.ping(3002)
+print(param_1,param_2,param_3,param_4,obj.requests,obj.r)"""
+"""#Submitted answer
+from collections import deque
+
+class RecentCounter:
+
+    def __init__(self):
+        self.requests = deque()  # Use a deque to store only recent requests
+
+    def ping(self, t: int) -> int:
+        self.requests.append(t)
+        
+        # Remove requests that are out of the 3000 ms range
+        while self.requests[0] < t - 3000:
+            self.requests.popleft()  # Efficiently remove old requests
+        
+        # The length of the queue is the count of recent requests
+        return len(self.requests)
+"""
+
+
 
 
 
