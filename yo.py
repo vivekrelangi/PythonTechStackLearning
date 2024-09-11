@@ -2779,6 +2779,32 @@ class RecentCounter:
         # The length of the queue is the count of recent requests
         return len(self.requests)
 """
+"""def find_ten_substring(num_str):
+    result_list=[]
+    for i in range(len(num_str)):
+        num=0
+        num+=int(num_str[i])
+        eles=""
+        eles+=num_str[i]
+        #print("num:",num,"eles:",eles)
+        if i==len(num_str)-1:
+            break
+        for j in range(i+1,len(num_str)):
+            num+=int(num_str[j])
+            eles+=num_str[j]
+            if num == 10:
+                #print("eles:",eles)
+                result_list.append(eles)
+            #print(num,end=" ")
+        #print()
+        #print(type(num))
+    return result_list
+    #Remove pass and write your logic here
+
+num_str="3523014"
+print("The number is:",num_str)
+result_list=find_ten_substring(num_str)
+print(result_list)"""
 
 
 
