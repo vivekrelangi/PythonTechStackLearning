@@ -2805,6 +2805,23 @@ num_str="3523014"
 print("The number is:",num_str)
 result_list=find_ten_substring(num_str)
 print(result_list)"""
+def find_duplicates(list_of_numbers):
+    #start writing your code here
+    count=[0]*len(list_of_numbers)
+    ret=[]
+    for i in range(len(list_of_numbers)):
+        print(i,list_of_numbers[i])
+        for j in range(len(list_of_numbers)):
+            if list_of_numbers[i]==list_of_numbers[j]:
+                count[i]+=1
+    for inc in range(len(count)):
+        if count[inc]>1 and list_of_numbers[inc] not in ret:
+            ret.append(list_of_numbers[inc])
+    return ret
+
+list_of_numbers=[1,2,2,3,3,3,4,4,4,4]
+list_of_duplicates=find_duplicates(list_of_numbers)
+print(list_of_duplicates)
 
 
 
