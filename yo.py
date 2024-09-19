@@ -3103,7 +3103,580 @@ def check_anagram(data1,data2):
     return True
 
 print(check_anagram("Schoolmaster","Theclassroom"))"""
+"""class Mobile:
+    def __init__(self, brand, price):
+        self.brand = brand
+        self.price = price
+
+mob1=Mobile("Apple", 1000)
+mob2=Mobile("Samsung", 2000)
+mob3=Mobile("Apple", 3000)
+mob4=Mobile("Samsung", 4000)
+mob5=Mobile("Apple", 5000)
+
+list_of_mobiles=[mob1, mob2, mob3, mob4, mob5]
+
+for mobile in list_of_mobiles:
+    print (mobile.brand,mobile.price)"""
+"""class Mobile:
+    def __init__(self,brand,price):
+        self.brand = brand
+        self.price = price
+
+mob1=Mobile("Apple", 1000)
+mob2=Mobile("Samsung", 5000)
+mob3=Mobile("Apple", 3000)
+
+mob_dict={
+          "m1":mob1,
+          "m2":mob2,
+          "m3":mob3
+          }
+
+for key,value in mob_dict.items():
+    if value.price > 3000:
+        print (value.brand,value.price)"""
+"""class Customer:
+    def __init__(self, cust_id, cust_name, location):
+        self.cust_id = cust_id
+        self.cust_name = cust_name
+        self.location = location
+
+list_of_customers = [Customer(101, 'Mark', 'US'),
+Customer(102, 'Jane', 'Japan'),
+Customer(103, 'Kumar', 'India')]
+dict_of_customer={}
+for i in list_of_customers:
+    dict_of_customer[i.location]=i
+
+print(dict_of_customer)"""
+"""class Customer:
+    def __init__(self, cust_id, cust_name, location):
+        self.cust_id = cust_id
+        self.cust_name = cust_name
+        self.location = location
+
+list_of_customers = [Customer(101, 'Mark', 'US'),
+                     Customer(102, 'Jane', 'Japan'),
+                     Customer(103, 'Kumar', 'India')]
+
+dict_of_customer = {}
+for customer in list_of_customers:
+    dict_of_customer[customer.location] = customer
+
+print ("Customer name in India is "+dict_of_customer["India"].cust_name)
+
+for key,value in dict_of_customer.items():
+    print ("Location: "+key+", Name: "+value.cust_name+", Id: "+(str(value.cust_id)))"""
+"""class Mobile:
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+        self.discount = 0
+    def purchase(self):
+        total = self.price - self.price * self.discount / 100
+        print (self.brand, "mobile with price", self.price, "is available after discount at", total)
+def enable_discount(list_of_mobiles):
+    for mobile in list_of_mobiles:
+        mobile.discount=50
+def disable_discount(list_of_mobiles):
+    for mobile in list_of_mobiles:
+        mobile.discount=0
+mob1=Mobile(20000, "Apple")
+mob2=Mobile(30000, "Apple")
+mob3=Mobile(5000, "Samsung")
+mob4=Mobile(6000, "Samsung")
+list_of_mobiles=[mob1,mob2,mob3,mob4]
+mob1.purchase()
+enable_discount(list_of_mobiles)
+mob2.purchase()
+mob3.purchase()
+disable_discount(list_of_mobiles)
+mob4.purchase()"""
+"""class Mobile:
+    discount = 50
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+    def purchase(self):
+        total = self.price - self.price * Mobile.discount / 100
+        print (self.brand, "mobile with price", self.price, "is available after discount at", total)
+
+mob1=Mobile(20000, "Apple")
+mob2=Mobile(30000, "Apple")
+mob3=Mobile(5000, "Samsung")
+
+mob1.purchase()
+mob2.purchase()
+mob3.purchase()"""
+"""class Mobile:
+    discount = 50
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+    def purchase(self):
+        total = self.price - self.price * Mobile.discount / 100
+        print (self.brand, "mobile with price", self.price, "is available after discount at", total)
+
+def enable_discount():
+    Mobile.discount = 50
+
+def disable_discount():
+    Mobile.discount = 0
+
+mob1=Mobile(20000, "Apple")
+mob2=Mobile(30000, "Apple")
+mob3=Mobile(5000, "Samsung")
+
+enable_discount()
+mob1.purchase()
+mob2.purchase()
+disable_discount()
+mob3.purchase()"""
+"""class Mobile:
+    __discount = 50
+    def __init__(self):
+        pass
+    def get_discount(self):
+        return Mobile.__discount
+
+    def set_discount(self,discount):
+        Mobile.__discount = discount
+
+m1=Mobile()
+m2=Mobile()
+print(m1.get_discount())
+Mobile().set_discount(30)
+print(m1.get_discount(),m2.get_discount())"""
+"""class Mobile:
+    __discount = 50
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+    def purchase(self):
+        total = self.price - self.price * Mobile.__discount / 100
+        print ("Total is ",total)
+
+    def get_discount(self):
+        return Mobile.__discount
+
+    def set_discount(self,discount):
+        Mobile.__discount = discount
+
+mob1=Mobile(20000, "Apple")
+mob2=Mobile(30000, "Apple")
+mob3=Mobile(5000, "Samsung")
+
+print(mob1.get_discount())"""
+"""class Mobile:
+    __discount = 50
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+    def purchase(self):
+        total = self.price - self.price * Mobile.__discount / 100
+        print ("Total is ",total)
+
+    @staticmethod
+    def get_discount():
+        return Mobile.__discount
+
+    @staticmethod
+    def set_discount(discount):
+        Mobile.__discount = discount
+
+print (Mobile.get_discount())"""
+"""#The complete solution
+class Mobile:
+    __discount = 50
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+
+    def purchase(self):
+        total = self.price - self.price * Mobile.__discount / 100
+        print (self.brand, "mobile with price", self.price, "is available after discount at", total)
+
+    @staticmethod
+    def enable_discount():
+        Mobile.set_discount(50)
+
+    @staticmethod
+    def disable_discount():
+        Mobile.set_discount(0)
+
+    @staticmethod
+    def get_discount():
+        return Mobile.__discount
+
+    @staticmethod
+    def set_discount(discount):
+        Mobile.__discount = discount
+
+mob1=Mobile(20000, "Apple")
+mob2=Mobile(30000, "Apple")
+mob3=Mobile(5000, "Samsung")
+
+Mobile.disable_discount()
+
+mob1.purchase()
+
+Mobile.enable_discount()
+
+mob2.purchase()
+
+Mobile.disable_discount()
+
+mob3.purchase()"""
+"""class Mobile:
+    counter = 1000
+    def __init__(self, price, brand):
+        self.price = price
+        self.brand = brand
+        self.mobile_id = Mobile.counter
+        Mobile.counter += 1
+
+mob1=Mobile(20000, "Apple")
+mob2=Mobile(30000, "Apple")
+mob3=Mobile(5000, "Samsung")
+
+print("mobile_id for mob1 is", mob1.mobile_id)
+print("mobile_id for mob2 is", mob2.mobile_id)
+print("mobile_id for mob3 is", mob3.mobile_id)
+
+print("Current value of counter is", Mobile.counter)"""
+"""class Example:
+    def __init__(self):
+        self.__num=10
+    @staticmethod
+    def display():
+        self.__num+=1
+        print(self.__num)
+obj=Example()
+obj.display()"""
+"""class Ticket:
+    counter=0
+    def __init__(self,passenger_name,source,destination) -> None:
+        self.__passenger_name=passenger_name
+        self.__source=source
+        self.__destination=destination
+        self.__ticket_id=None
+
+    def validate_source_destination(self):
+        if self.__source=="Delhi".lower() and self.__destination.lower() in ["mumbai","chennai","pune","kolkata"]:
+            return True
+        else:
+            return False
+
+    def generate_ticket(self):
+        if self.validate_source_destination():
+            Ticket.counter+=1
+            self.__ticket_id=""
+            self.__ticket_id+="D"
+            self.__ticket_id+=self.__destination[0]
+            if Ticket.counter in [1,2,3,4,5,6,7,8,9]:
+                self.__ticket_id+="0"
+                self.__ticket_id+=str(Ticket.counter)
+            else:
+                self.__ticket_id+=str(Ticket.counter)
+        else:
+            self.__ticket_id=None
+
+    def get_ticket_id(self):
+        return self.__ticket_id
+
+    def get_passenger_name(self):
+        return self.__passenger_name
+    
+    def get_source(self):
+        return self.__source
+    
+    def get_destination(self):
+        return self.__destination
+    
+t=Ticket("Ram","delhi","Chennai")
+print(t.validate_source_destination())"""
+"""class Flower:
+    def __init__(self):
+        self.__flower_name=None
+        self.__price_per_kg=None
+        self.__stock_available=None
+    
+    def validate_flower(self):
+        if self.__flower_name.lower() in ["orchid","rose","jasmine"]:
+            return True
+        else:
+            return False
         
+    def validate_stock(self,required_quantity):
+        if required_quantity <= self.__stock_available:
+            return True
+        else:
+            return False
+
+    def check_level(self):
+        if self.__flower_name.lower()=="orchid" and self.__stock_available<15:
+            return True
+        elif self.__flower_name.lower()=="rose" and self.__stock_available<25:
+            return True
+        elif self.__flower_name.lower()=="jasmine" and self.__stock_available<40:
+            return True
+        else:
+            return False
+           
+    def sell_flower(self, required_quantity):
+        if self.validate_flower() and self.validate_stock(required_quantity):
+            self.__stock_available-=required_quantity
+
+    def set_flower_name(self, flower_name):
+        self.__flower_name=flower_name
+    
+    def get_flower_name(self):
+        return self.__flower_name
+    
+    def set_price_per_kg(self, price_per_kg):
+        self.__price_per_kg=price_per_kg
+
+    def get_price_per_kg(self):
+        return self.__price_per_kg
+    
+    def set_stock_available(self, stock_available):
+        self.__stock_available=stock_available
+
+    def get_stock_available(self):
+        return self.__stock_available"""
+"""class CallDetail:
+    def __init__(self,phoneno,called_no,duration,call_type):
+        self.__phoneno=phoneno
+        self.__called_no=called_no
+        self.__duration=duration
+        self.__call_type=call_type
+
+class Util:
+    def __init__(self):
+        self.list_of_call_objects=None
+
+    def parse_customer(self,list_of_call_string):
+        customers=[]
+        for i in list_of_call_string:
+            customers.append(i.split(","))
+        self.list_of_call_objects=[]
+        for j in customers:
+            self.list_of_call_objects.append(CallDetail(j[0],j[1],j[2],j[3]))
+        return self.list_of_call_objects
+        
+
+call='9990000001,9330000001,23,STD'
+call2='9990000001,9330000002,54,Local'
+call3='9990000001,9330000003,6,ISD'
+
+list_of_call_string=[call,call2,call3]
+print(Util().parse_customer(list_of_call_string))"""
+"""class Bill:
+    def __init__(self,bill_id,patient_name):
+        self.__bill_id=bill_id
+        self.__patient_name=patient_name
+        self.__bill_amount=0
+
+    def get_bill_id(self):
+        return self.__bill_id
+    
+    def get_patient_name(self):
+        return self.__patient_name
+    
+    def get_bill_amount(self):
+        return self.__bill_amount
+    
+    def calculate_bill_amount(self,consultation_fees,quantity_list,price_list):
+        self.__bill_amount+=consultation_fees
+        for i in range(len(quantity_list)):
+            self.__bill_amount+=quantity_list[i]*price_list[i]"""
+"""class Classroom:
+    classroom_list=[]
+    @staticmethod
+    def search_classroom(class_room):
+        for i in range(len(Classroom.classroom_list)):
+            if class_room.lower() == Classroom.classroom_list[i].lower():
+                return "Found"
+        return -1"""
+"""class Customer:
+    def __init__(self, name, age, phone_no, address):
+        self.name = name
+        self.age = age
+        self.phone_no = phone_no
+        self.address = address
+
+    def view_details(self):
+        print (self.name, self.age, self.phone_no)
+        print (self.address.get_door_no(), self.address.get_street(), self.address.get_pincode())
+
+class Address:
+    def __init__(self, door_no, street, pincode):
+        self.__door_no = door_no
+        self.__street = street
+        self.__pincode = pincode
+
+    def get_door_no(self):
+        return self.__door_no
+
+
+    def get_street(self):
+        return self.__street
+
+
+    def get_pincode(self):
+        return self.__pincode
+
+
+    def set_door_no(self, value):
+        self.__door_no = value
+
+
+    def set_street(self, value):
+        self.__street = value
+
+
+    def set_pincode(self, value):
+        self.__pincode = value
+
+
+    def update_address(self):
+        pass
+
+
+add1=Address(123, "5th Lane", 56001)
+cus1=Customer("Jack", 24, 1234, add1)
+
+cus1.view_details()"""
+"""class Customer:
+    def __init__(self, name, age, phone_no):
+        self.name = name
+        self.age = age
+        self.phone_no = phone_no
+
+    def purchase(self, payment):
+        if payment.type == "card":
+            print ("Paying by card")
+        elif payment.type == "e-wallet":
+            print ("Paying by wallet")
+        else:
+            print ("Paying by cash")
+
+class Payment:
+    def __init__(self, type):
+        self.type = type
+
+payment1=Payment("card")
+c=Customer("Jack",23,1234)
+
+c.purchase(payment1)"""
+"""class Foo:
+    def __init__(self,num1,num2):
+        self.__num1=num1
+        self.num2=num2
+
+    def __str__(self):
+        return str(self.__dict__)
+f1=Foo(10,20)
+f2=Foo(20,30)
+f3=Foo(30,40)
+print(f1,f2,f3)"""
+"""class Parrot:
+    __counter=7000
+    def __init__(self,name,color):
+        Parrot.__counter+=1
+        self.__name=name
+        self.__color=color
+        self.__unique_number=Parrot.__counter
+
+    def get_name(self):
+        return self.__name
+
+    def get_color(self):
+        return self.__color
+    
+    def get_unique_number(self):
+        return self.__unique_number"""
+"""class Customer:
+    def __init__(self,phone_no,name,age):
+        self.phone_no=phone_no
+        self.name=name
+        self.age=age
+        self.list_of_calls=None
+
+class CallDetail:
+    def __init__(self,phone_no,called_no,duration):
+        self.phone_no=phone_no
+        self.called_no=called_no
+        self.duration=duration
+
+class Util:
+    def __init__(self):
+        self.list_of_customer_calldetail_objects=None
+    def parse_customer(self,list_of_customers,list_of_calls):
+        self.list_of_customer_calldetail_objects=[]
+        for customer in list_of_customers:
+            customer.list_of_calls=[]
+            for call in list_of_calls:
+                if customer.phone_no == call.phone_no:
+                    customer.list_of_calls.append(call)
+            self.list_of_customer_calldetail_objects.append(customer)
+
+
+
+cust1=Customer(9900009901,'cust1',23)
+cust2=Customer(9900009902,'cust2',24)
+cust3=Customer(9900009903,'cust3',25)
+list_of_customers=[cust1,cust2,cust3]
+
+call1=CallDetail(9900009901,8800123401,5)
+call2=CallDetail(9900009903,8800123402,10)
+call3=CallDetail(9900009902,8800123403,2)
+call4=CallDetail(9900009901,8800123404,8)
+call5=CallDetail(9900009901,8800123405,7)
+call6=CallDetail(9900009903,8800123406,9)
+call7=CallDetail(9900009903,8800123407,4)
+list_of_calls=[call1,call2,call3,call4,call5,call6,call7]
+#Util().parse_customer(list_of_customers, list_of_calls)
+u1=Util()
+u1.parse_customer(list_of_customers,list_of_calls)
+c1=u1.list_of_customer_calldetail_objects[0]
+#print(c1.list_of_calls)
+for c in c1.list_of_calls:
+    print(c.phone_no,c.called_no,c.duration)
+c2=u1.list_of_customer_calldetail_objects[1]
+for c in c2.list_of_calls:
+    print(c.phone_no,c.called_no,c.duration)
+c3=u1.list_of_customer_calldetail_objects[2]
+for c in c3.list_of_calls:
+    print(c.phone_no,c.called_no,c.duration)
+#c4=u1.list_of_customer_calldetail_objects[3]"""
+"""[Customer(phone_no:9900009901 , name:cust1 , age:23), Customer(phone_no:9900009902 , name:cust2 , age:24), Customer(phone_no:9900009966 , name:cust3 , age:25)],[CallDetail(phone_no:9900009901 , called_no:8800123401 , duration:5), CallDetail(phone_no:9900009903 , called_no:8800123402 , duration:10), CallDetail(phone_no:9900009902 , called_no:8800123403 , duration:2), CallDetail(phone_no:9900009901 , called_no:8800123404 , duration:8), CallDetail(phone_no:9900009901 , called_no:8800123405 , duration:7), CallDetail(phone_no:9900009909 , called_no:8800123406 , duration:9), CallDetail(phone_no:9900009903 , called_no:8800123407 , duration:4)]"""
+
+                                                
+
+
+
+
+
+
+        
+                                                    
+
+
+
+
+
+
+                                                   
+                                                
+
+
+
 
 
 
