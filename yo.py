@@ -3656,8 +3656,1120 @@ for c in c3.list_of_calls:
     print(c.phone_no,c.called_no,c.duration)
 #c4=u1.list_of_customer_calldetail_objects[3]"""
 """[Customer(phone_no:9900009901 , name:cust1 , age:23), Customer(phone_no:9900009902 , name:cust2 , age:24), Customer(phone_no:9900009966 , name:cust3 , age:25)],[CallDetail(phone_no:9900009901 , called_no:8800123401 , duration:5), CallDetail(phone_no:9900009903 , called_no:8800123402 , duration:10), CallDetail(phone_no:9900009902 , called_no:8800123403 , duration:2), CallDetail(phone_no:9900009901 , called_no:8800123404 , duration:8), CallDetail(phone_no:9900009901 , called_no:8800123405 , duration:7), CallDetail(phone_no:9900009909 , called_no:8800123406 , duration:9), CallDetail(phone_no:9900009903 , called_no:8800123407 , duration:4)]"""
+"""def remove_duplicates(value):
+    #start writing your code here
+    # l=list(value)
+    # s=set(l)
+    # d=list(s)
+    # ret=''.join(d)
+    # visited=[]
+    # retres=''
+    # for i in range(len(value)):
+    #     for j in range(len(ret)):
+    #         #print(value[i],ret[j])
+    #         if value[i]==ret[j] and j not in visited and value[i] not in retres:
+    #             retres+=value[j]
+    #             visited.append(j)
+    retres=''
+    s=list(set(list(value)))
+    print("s:",s)
+    ind=[]
+    #count=[0]*len(s)
+    for i in range(len(s)):
+        # for j in range(len(value)):
+        ind.append(value.index(s[i]))
+            
+            # if value[i]==value[j]:
+            #     count[i]+=1
+    # print(count)
+    # for k in range(len())
+    # print("ind:",ind)
+    ind.sort()
+    # print("ind:",ind)
+    for j in range(len(ind)):
+        retres+=value[ind[j]]
+    return retres
 
-                                                
+print(remove_duplicates("11223445566666ababzzz@@@123#*#*"))"""
+"""def check_perfect_number(number):
+    #start writing your code here
+    if number==0:
+        return False
+    divisors=[]
+    for i in range(1,number):
+        # divisors=[]
+        if number%i==0:
+            divisors.append(i)
+    if sum(divisors)==number:
+        return True
+    elif divisors == []:
+        return False
+    else:
+        return False
+
+
+def check_perfectno_from_list(no_list):
+    #start writing your code here
+    ret=[]
+    for i in range(len(no_list)):
+        if check_perfect_number(no_list[i]):
+            ret.append(no_list[i])
+    return ret
+
+perfectno_list=check_perfectno_from_list([18,6,4,2,1,28,0])
+print(perfectno_list)
+#code solved all test cases"""
+"""#Sample ticket list - ticket format: "flight_no:source:destination:ticket_no"
+#Note: flight_no has the following format - "airline_name followed by three digit number
+
+#Global variable
+ticket_list=["AI567:MUM:LON:014","AI077:MUM:LON:056", "BA896:MUM:LON:067", "SI267:MUM:SIN:145","AI077:MUM:CAN:060","SI267:BLR:MUM:148","AI567:CHE:SIN:015","AI077:MUM:SIN:050","AI077:MUM:LON:051","SI267:MUM:SIN:146"]
+
+def find_passengers_flight(airline_name="AI"):
+    #This function finds and returns the number of passengers travelling in the specified airline.
+    count=0
+    for i in ticket_list:
+        string_list=i.split(":")
+        if(string_list[0].startswith(airline_name)):
+            count+=1
+    return count
+
+def find_passengers_destination(destination):
+    #Write the logic to find and return the number of passengers traveling to the specified destination
+    count=0
+    for i in ticket_list:
+        string_list=i.split(":")
+        if(string_list[2].startswith(destination)):
+            count+=1
+    return count
+    #Remove pass and write your logic here
+
+def find_passengers_per_flight():
+    '''Write the logic to find and return a list having number of passengers traveling per flight based on the details in the ticket_list
+    In the list, details should be provided in the format:
+    [flight_no:no_of_passengers, flight_no:no_of_passengers, etc.].'''
+    ret=[]
+    for i in ticket_list:
+        string_list=i.split(":")
+        #ret.append(string_list[0])
+        count=0
+        for j in ticket_list:
+            if j.startswith(string_list[0]):
+                count+=1
+        if string_list[0]+":"+str(count) not in ret:
+            ret.append(string_list[0]+":"+str(count))
+    return ret
+    
+    #Remove pass and write your logic here
+
+def sort_passenger_list():
+    #Write the logic to sort the list returned from find_passengers_per_flight() function in the descending order of number of passengers
+    l=find_passengers_per_flight()
+    ret=[]
+    # for i in l:
+    #     s_list=i.split(":")
+    #     f[int(s_list[1])]=s_list[0]
+    # n=f.keys()
+    # n.sort(reverse=True)
+    # for i in range:
+    n=[]
+    for i in l:
+        s_list=i.split(":")
+        n.append(int(s_list[1]))
+    n.sort(reverse=True)
+    #print(n)
+    for i in n:
+        #print("i:",i)
+        #s_list=i.split(":")
+        for j in l:
+            #print("j:",j)
+            if j.endswith(str(i)) and j not in ret:
+                #print("yes")
+                ret.append(j)
+    return ret
+    #Remove pass and write your logic here
+
+#Provide different values for airline_name and destination and test your program.
+print(find_passengers_flight("BA"))
+print(find_passengers_destination("LON"))
+print(find_passengers_per_flight())
+print(sort_passenger_list())"""
+"""def nearest_palindrome(number):
+    #start writitng your code here
+    while(True):
+        number+=1
+        numstr=str(number)
+        reversenum=numstr[::-1]
+        if str(number) == reversenum:
+            break
+    return number
+
+number=12300
+print(nearest_palindrome(number))"""
+"""def check_prime(number):
+    if number<=1:
+        return False
+    for i in range(2,number):
+        if number%i==0:
+            return False
+    return True #remove pass and write your logic here. if the number is prime return true, else return false
+
+def rotations(num):
+    ret = []
+    for i in range(len(str(num))):
+        ret.append(int(str(num)[i:len(str(num))]+str(num)[0:i]))
+    return ret#remove pass and write your logic here. It should return the list of different combinations of digits of the given number.
+	#Rotation should be done in clockwise direction. For example, if the given number is 197, the list returned should be [197, 971, 719]
+
+def get_circular_prime_count(limit):
+    #circular_primes=[]
+    count=0
+    for i in range(limit):
+        if check_prime(i):
+            l=rotations(i)
+            addit=True
+            for j in l:
+                if check_prime(j):
+                    continue
+                else:
+                    addit=False
+                    break
+            if addit:
+                #circular_primes.append(i)
+                count+=1
+    return count #remove pass and write your logic here.It should return the count of circular prime numbers below the given limit.
+
+#Provide different values for limit and test your program
+print(get_circular_prime_count(100))
+print(check_prime(7))
+print(rotations(197))"""
+"""#import re
+def validate_name(name):
+    #Start writing your code here
+    if name!="" and len(name)<=15 and name.isalpha():
+        return True
+    else:
+        return False
+
+
+def validate_phone_no(phno):
+    #Start writing your code here
+    if phno.isdigit() and len(phno) == 10:
+        s=list(set(list(phno)))
+        if len(s)>1:
+            return True
+    return False
+
+def validate_email_id(email_id):
+    #Start writing your code here
+    if email_id.count("@") == 1 and email_id.count(".") == 1:
+        s=email_id.split("@")
+        s1=s[1].split(".")
+        if s[0].isalpha and s1[0] in ['gmail','yahoo','hotmail'] and s1[1] == 'com':
+            return True
+    return False
+
+def validate_all(name,phone_no,email_id):
+    #Start writing your code here
+    # Use the below given print statements to display appropriate messages
+    # Also, do not modify them for verification to work
+    #print("Invalid Name")
+    #print("Invalid phone number")
+    #print("Invalid email id")
+    #print("All the details are valid")
+    if validate_name(name) and validate_email_id(email_id) and validate_phone_no(phone_no):
+        print("All the details are valid")
+
+    elif validate_name(name) == False:
+        print("Invalid Name")
+    elif validate_phone_no(phone_no) == False:
+        print("Invalid phone number")
+    elif validate_email_id(email_id) == False:
+        print("Invalid email id")
+
+
+
+#Provide different values for name, phone_no and email_id and test your program
+validate_all("Tina", "9994599998", "tina@yahoo.com")
+print(validate_name("evaro"))  
+print(validate_phone_no("@2345"))"""
+"""def validate_credit_card_number(card_number):
+    #start writing your code here
+    if len(str(card_number)) == 16:
+        sec=[]
+        fir=[]
+        for i in range(14,-1,-2):
+            d=int(str(card_number)[i])*2
+            if d > 9:
+                s=0
+                for i in range(len(str(d))):
+                    s+=int(str(d)[i])
+                sec.append(s)
+                continue
+            sec.append(d)
+        for i in range(15,-1,-2):
+            fir.append(int(str(card_number)[i]))
+        print(sec)
+        print(fir)
+        if (sum(sec)+sum(fir))%10 == 0:
+            return True
+    return False
+
+card_number= 5239512608615007#1456734512345698 #4539869650133101  #1456734512345698 # #5239512608615007
+result=validate_credit_card_number(card_number)
+if(result):
+    print("credit card number is valid")
+else:
+    print("credit card number is invalid")"""
+"""def add_string(str1):
+  #start writing your code here
+  if len(str1)<3:
+    return str1
+  elif str1.endswith("ing"):
+    str1+="ly"
+    return str1
+  else:
+    str1+="ing"
+    return str1
+
+
+str1="com"
+print(add_string(str1))"""
+"""def bracket_pattern(input_str):
+    #Remove pass and write your code here
+	if input_str.startswith(")") or input_str.endswith("(") or input_str.count("(")!=input_str.count(")"):
+		return False
+	return True
+
+    
+input_str="(())("
+print(bracket_pattern(input_str))"""
+"""def create_new_dictionary(prices):
+    #start writing your code here
+    new_dict={}
+    for k,v in prices.items():
+        if v>200:
+            new_dict[k]=v
+
+    
+    return new_dict
+
+prices = { 'ACME': 45.23,'AAPL': 612.78,'IBM': 205.55,'HPQ': 37.20,'FB': 10.75}
+print(create_new_dictionary(prices))"""
+"""def find_nine(nums):
+    #Remove pass and write your code here
+	if len(nums)<4:
+		if 9 in nums:
+			return True
+	elif len(nums)>=4:
+		if 9 in nums[0:4]:
+			return True
+	return False
+    
+
+nums=[1,9,4]
+print(find_nine(nums))"""
+"""def count_digits_letters(sentence):
+    #start writing your code here
+    count=[0,0]
+    for i in range(len(sentence)):
+        if sentence[i].isdigit():
+            count[1]+=1
+        elif sentence[i].isalpha():
+            count[0]+=1
+    
+    return count
+
+sentence="Infosys Mysore 570027"
+print(count_digits_letters(sentence))"""
+"""def list123(nums):
+    #start writing your code here
+    # if [1,2,3] in nums:
+    #     return True
+    sublistsoflen3=[]
+    if len(nums)>=3:
+        for i in range(len(nums)):
+            for j in range(len(nums)+1):
+                if abs(i-j) == 3 and nums[i:j] != []:
+                    sublistsoflen3.append(nums[i:j])
+        if [1,2,3] in sublistsoflen3:
+            return True
+        #print(sublistsoflen3)
+    return False
+
+    
+
+nums=[1,2,3,4,5]
+print(list123(nums))"""
+"""def seed_no(number,ref_no):
+    #start writing your code here
+    res=number
+    for i in range(len(str(number))):
+        res*=int(str(number)[i])
+    print(res)
+    if res == ref_no:
+        return True
+    return False
+number=123
+ref_no=738
+print(seed_no(number,ref_no))"""
+"""def calculate_net_amount(trans_list):
+    #start writing your code here
+    net_amount=0 
+    for i in trans_list:
+        print(i)
+        sl=i.split(":")
+        if sl[0] == 'D':
+            net_amount+=int(sl[1])
+        elif sl[0] == 'W':
+            net_amount-=int(sl[1])
+        print(net_amount)
+    
+    return net_amount
+
+trans_list=["D:300","D:200","W:200","D:100"]
+print(calculate_net_amount(trans_list))"""
+"""def generate_dict(number):
+	#start writing your code here
+	new_dict={}
+	for i in range(1,number+1):
+		new_dict[i]=i*i
+	return new_dict
+
+number=20
+print(generate_dict(number))"""
+"""def string_both_ends(input_string):
+	#start writing your code here
+    if len(input_string)<2:
+        return -1
+    else:
+        return input_string[0:2]+input_string[len(input_string)-2:len(input_string)]
+
+input_string="w3w"
+print(string_both_ends(input_string))"""
+"""def find_upper_and_lower(sentence):
+    #start writing your code here
+    result_list=[0,0]
+    # s=sentence.split(" ")
+    # sen=""
+    # for i in s:
+    #     sen+=i
+    # # print(sen)
+    # # print(sentence,s)
+    for i,v in enumerate(sentence):
+        # if sentence[i]
+        #print(i,v)
+        if v.isalpha():
+            if v.lower() == v:
+                result_list[1]+=1
+            elif v.upper() == v:
+                result_list[0]+=1
+    return result_list
+
+sentence="Come Here"
+print(find_upper_and_lower(sentence))"""
+"""def generate_sentences(subjects,verbs,objects):
+	#start writing your code here
+	sentence_list=[]
+	for i in subjects:
+		for j in verbs:
+			for k in objects:
+				sentence_list.append(i+" "+j+" "+k)
+
+	
+	return sentence_list
+
+subjects=["I","You"]
+verbs=["love", "play"]
+objects=["Hockey","Football"]
+print(generate_sentences(subjects,verbs,objects))"""
+"""def check_22(num_list):
+    #start writing your code here
+    for i in range(len(num_list)):
+        for j in range(len(num_list)):
+            if i == j-1 and num_list[i] ==2 and num_list[j] == 2:
+                return True
+    return False
+        
+print(check_22([3,2,5,1,2,1,2,2]))"""
+"""def divisible_by_sum(number):
+    #start writing your code here
+    d=0
+    for i in str(number):
+        d+=int(i)
+    if number%d==0:
+        return True
+    return False
+
+    
+number=42
+print(divisible_by_sum(number))"""
+"""def find_gcd(num1,num2):
+    #start writing your code here
+    divisors=[]
+    if num1<=num2:
+        num=num1
+    else:
+        num=num2
+    for i in range(1,num+1):
+        if num1%i == 0 and num2%i == 0:
+            divisors.append(i)
+    return max(divisors)
+    
+
+num1=45
+num2=9
+print(find_gcd(num1,num2))"""
+"""def list_of_count(word_list):
+    #start writing your code here
+    count_list=[]
+    for i in range(len(word_list)):
+        count_list.append(0)
+        count_list[i]=len(word_list[i])
+    return count_list
+
+word_list=["COme","here"]
+print(list_of_count(word_list))"""
+"""def check_occurence(string):
+    #start writing your code here
+    s=string.split(" ")
+    count=[0,0]
+    for i in s:
+        if i.lower() == 'mat':
+            count[0]+=1
+        elif i.lower() == 'jet':
+            count[1]+=1
+    if count[0]==count[1]:
+        return True
+    return False
+        
+string="Jet on the Mat but mat is too long"
+print(check_occurence(string))"""
+"""def check_for_ten(num1,num2):
+    #start writing your code here
+    if num1 == 10 or num2 == 10:
+        return True
+    elif num1+num2 == 10:
+        return True
+    return False
+    
+print(check_for_ten(10,9))"""
+"""def exchange_list(number_list):
+    #start writing your code here
+    ret=number_list[len(number_list):len(number_list)//2-1:-1]
+    # for i in range(len(number_list)//2):
+    #     print(i,number_list[i])
+    #     ret.append(number_list.pop(i))
+    #     print(number_list)
+    # for j in ret:
+    #     number_list.append(j)
+    ret1=number_list[0:len(number_list)//2]
+    number_list=ret+ret1
+    
+
+    
+    return number_list
+     
+number_list=[1,2,3,4,5,6]
+print(exchange_list(number_list))"""
+"""def sum_of_elements(num_list,number):
+    inds=[]
+    result_sum=0
+    for i,v in enumerate(num_list):
+        if v==number and i not in inds:
+            inds.append(i)
+            if 0<=i-1<len(num_list) and i-1 not in inds:
+                inds.append(i-1)
+            if 0<=i+1<len(num_list) and i+1 not in inds:
+                inds.append(i+1) 
+    for i,v in enumerate(num_list):
+        if i not in inds:
+            result_sum+=v
+    return result_sum
+      
+num_list=[1,7,3,4,1,7,10,5]
+number=7
+print(sum_of_elements(num_list, number))"""
+"""def check_well_formatted(input_item,list_label):
+    #Start writing your code here
+    if type(input_item) == list:
+        print("1",input_item)
+        if len(input_item) >= 2:
+            print("2")
+            if input_item[0] in list_label:
+                print("3")
+                if all((type(item) is str) or check_well_formatted(item,list_label) for item in input_item[1:len(input_item)]):
+                    print("4")
+                    print("all(type(item) is str for item in input_item[1:len(input_item)]):",all(type(item) is str for item in input_item[1:len(input_item)]))
+                    print("all(check_well_formatted(item,list_label) for item in input_item[1:len(input_item)])",all(check_well_formatted(item,list_label) for item in input_item[1:len(input_item)]))
+                    return True
+                else:
+                    print("here")
+                    print("all(type(item) is str for item in input_item[1:len(input_item)]):",all(type(item) is str for item in input_item[1:len(input_item)]))
+                    print("all(check_well_formatted(item,list_label) for item in input_item[1:len(input_item)])",all(check_well_formatted(item,list_label) for item in input_item[1:len(input_item)]))
+                    return False
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+input_list1=[1, [2, 'oui', [1, 'no']], 'no']
+list_label1=[1, 2]
+result=check_well_formatted(input_list1,list_label1)
+if result is True:
+    print("Well formatted")
+else:
+    print("Not Well formatted")"""
+"""def convert_to_roman(num):
+    d={}
+    d[1000]='M'
+    d[900]='CM'
+    d[800]='DCCC'
+    d[700]='DCC'
+    d[600]='DC'
+    d[500]='D'
+    d[400]='CD'
+    d[300]='CCC'
+    d[200]='CC'
+    d[100]='C'
+    d[90]='XC'
+    d[80]='LXXX'
+    d[70]='LXX'
+    d[60]='LX'
+    d[50]='L'
+    d[40]='XL'
+    d[30]='XXX'
+    d[20]='XX'
+    d[10]='X'
+    d[9]='IX'
+    d[8]='VIII'
+    d[7]='VII'
+    d[6]='VI'
+    d[5]='V'
+    d[4]='IV'
+    d[3]='III'
+    d[2]='II'
+    d[1]='I'
+    val=""
+    vals=[]
+    for i in range(1,len(str(num))+1):
+        #print(num%(10**i),i,(10**i))
+        vals.append(num%(10**i))
+        num-=num%(10**i)
+        #print(num)
+    for i in vals[::-1]:
+        if i in d.keys():
+            val+=d[i]
+        elif i%1000 == 0:
+            inc = i//1000
+            for j in range(inc):
+                val+=d[1000]
+        # else:
+        #     diff=0
+        #     for k in d.keys():
+        #         for k1 in d.keys():
+        #             if k>i>k1:
+        #                 print(i,k,k1)
+        #                 val+=d[k1]
+        #                 diff=i-k1
+        #                 break
+        #         if diff:
+        #             convert_to_roman(i-k1) 
+        #             break
+        #     # for k in d.keys():
+        #     #     if i%k == 0:
+        #     #         quo=i//k
+        #     #         for inc in range(quo):
+        #     #             val+=d[k]
+        #     #         break
+            
+
+    #print(vals)
+    return val
+
+
+for num in range(1,5000):    
+    print(num," : ",convert_to_roman(num))
+#print("roman numeral for respective number is:",convert_to_roman(4998))"""
+"""train_list=[
+{"train_no":16453,"name":"Prasanti Express","from":"SBC","to":"BBS","days_of_run":['Mo','We','Th'],"sleeper_fare":600,"ac_fare": 987},
+{"train_no":25627,"name":"Karnataka Express","from":"SBC","to":"DEC","days_of_run":['Su','Tu'],"sleeper_fare":1600,"ac_fare": 2500},
+{"train_no":22642,"name":"Trivandrum SF Express","from":"VSKP","to":"TVM","days_of_run":['Mo','Tu','We','Th','Fr','Sa'],"sleeper_fare":800,"ac_fare": 1256},
+{"train_no":22905,"name":"Okha Howrah Express","from":"ST","to":"KOAA","days_of_run":['We','Sa'],"sleeper_fare":987,"ac_fare": 2879}]
+
+def get_train_name (train_no):
+    #start writing your code here
+    for train in train_list:
+        if train["train_no"]==train_no:
+            return train
+    else:
+        return "Invalid Train_no"
+
+def get_trains_for_day(day_of_run):
+    #start writing your code here
+    if day_of_run not in ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']:
+        return "Invalid day"
+    ret=[]
+    for train in train_list:
+        if day_of_run in train["days_of_run"]:
+            ret.append(train["train_no"])
+    return ret
+
+
+def get_total_fare(train_no,passenger_dict):
+    #start writing your code here
+    td=get_train_name(train_no)
+    total_fare=td["sleeper_fare"]*passenger_dict["sleeper"]+td["ac_fare"]*passenger_dict["ac"]
+    return total_fare
+    
+print(get_train_name(25627))
+print(get_trains_for_day("Mo"))
+print(get_total_fare(22642,{"sleeper":5, "ac":1}))"""
+"""def ducci_sequence(test_list,n):
+    #start writing your code here
+    final_list=[test_list]
+    for i in range(n+1):
+        final_list.append([0,0,0,0])
+        for j in range(len(final_list[i])):
+            if j+1==len(final_list[i+1]):
+                final_list[i+1][j]=abs(final_list[i][j]-final_list[i][-(len(final_list[i+1]))])
+            else:
+                final_list[i+1][j]=abs(final_list[i][j]-final_list[i][j+1])
+    # for i in range(n+1):
+    #     final_list.append(final_list[i])
+    #     for j in range(len(final_list[i])):
+    #         if j+1==len(final_list[i]):
+    #             final_list[i][j]=abs(final_list[i][j]-final_list[i][-(len(test_list))])
+    #         else:   
+    #             final_list[i][j]=abs(final_list[i][j]-final_list[i][j+1])
+    print(final_list)   
+    
+    return final_list[n+1]
+
+ducci_element=ducci_sequence([0, 653, 1854, 4063] , 1)
+print(ducci_element)"""
+"""def list_rotate(uniquecode_list):
+    rotated_list=[]
+    #Write your code here
+    def validate_uniq(uniquecode_list):
+        if len(uniquecode_list)!=0:
+            for i in uniquecode_list:
+                sl=i.split("-")
+                countalpha=0
+                countzero=0
+                for j in sl[0]:
+                    if j.isalpha():
+                        countalpha+=1
+                for k in sl[1]:
+                    if k == '0':
+                        countzero+=1
+                if countalpha<1 or countzero>0:
+                    return False
+                else:
+                    return True
+        return False
+    if validate_uniq(uniquecode_list):                
+        for i in uniquecode_list:
+            s=i.split("-")
+            rot=""
+            countalpha1=0
+            for j in s[0]:
+                if j.isalpha():
+                    rot+=j
+                    countalpha1+=1
+            rot+=s[1][countalpha1:len(s[1])]+s[1][0:countalpha1]
+            rotated_list.append(rot)
+    else:
+        for i in uniquecode_list:
+            s=i.split("-")
+            rot=""
+            countalpha1=0
+            for j in s[0]:
+                if j.isalpha():
+                    rot+=j
+                    countalpha1+=1
+            rot+=s[1][countalpha1:len(s[1])]+s[1][0:countalpha1]
+            rotated_list.append(rot)
+                
+                
+
+    return rotated_list
+
+#You may modify the below code for testing
+uniquecode_list=['G221-1011','S621-9699']
+rotated_list = list_rotate(uniquecode_list)
+print(rotated_list)"""
+"""#from typing import Any
+
+#Tried
+class Customer:
+    def __init__(self,customer_id,customer_name,address):
+        self.__customer_id=customer_id
+        self.__customer_name=customer_name
+        self.__address=address
+
+    def validate_customer_id(self):
+        if len(str(self.__customer_id)) == 6:
+            if str(self.__customer_id)[0] == '1':
+                for i in range(len(str(self.__customer_id))):
+                    if str(self.__customer_id)[i].isdigit():
+                        continue
+                    else:
+                        return False
+                return True
+        return False
+
+    def get_customer_id(self):
+        return self.__customer_id
+    
+    def get_customer_name(self):
+        return self.__customer_name
+    
+    def get_address(self):
+        return self.__address
+    
+class Freight:
+    count=198
+    def __init__(self,recipient_customer,from_customer,weight,distance):
+        self.__freight_id=Freight.count+2
+        self.__recipient_customer=recipient_customer
+        self.__from_customer=from_customer
+        self.__weight=weight
+        self.__distance=distance
+        self.__freight_charge=None
+
+    def validate_weight(self):
+        if self.__weight % 5 == 0:
+            return True
+        return False
+    
+    def validate_distance(self):
+        if 500<=self.__distance<=5000:
+            return True
+        return False
+    
+    def forward_cargo(self):
+        if self.__from_customer.validate_customer_id() and self.__recipient_customer.validate_customer_id() and self.validate_weight() and self.validate_distance():
+            Freight.count+=2
+            self.__freight_id=Freight.count
+            self.__freight_charge=(self.__weight*150)+(self.__distance*60)
+        else:
+            self.__freight_charge
+
+    def get_freight_charge(self):
+        return self.__freight_charge
+    
+    def get_freight_id(self):
+        return self.__freight_id
+    
+    def get_recipient_customer(self):
+        return self.__recipient_customer
+    
+    def get_from_customer(self):
+        return self.__from_customer
+    
+    def get_weight(self):
+        return self.__weight
+    
+    def get_distance(self):
+        return self.__distance
+    
+fc=Customer(100000,'A','X')
+rc=Customer(100001,'B','Y')
+fr=Freight(rc,fc,875,5000)
+fr.forward_cargo()
+fr.forward_cargo()
+fr.forward_cargo()
+fr.forward_cargo()
+fr.forward_cargo()
+print(fr.get_freight_charge(),fr.get_freight_id())"""
+"""#Actual
+class Customer:
+    def __init__(self,customer_id,customer_name,address):
+        self.__customer_id=customer_id
+        self.__customer_name=customer_name
+        self.__address=address
+        
+    def validate_customer_id(self):
+        id=str(self.__customer_id)
+        if len(id)==6:
+            if id[0]=="1":
+                return True
+        return False
+        
+    def get_customer_id(self):
+        return self.__customer_id
+        
+    def get_customer_name(self):
+        return self.__customer_name
+        
+    def get_address(self):
+        return self.__address
+        
+    
+class Freight:
+    counter=198
+    def __init__(self,recipient_customer,from_customer,weight,distance):
+        self.__recipient_customer=recipient_customer
+        self.__from_customer=from_customer
+        self.__weight=weight
+        self.__distance=distance
+        self.__freight_id=Freight.counter + 2
+        self.__freight_charge=None
+        
+    def validate_weight(self):
+        if self.__weight%5==0:
+            return True
+        return False
+        
+    def validate_distance(self):
+        if 500<=self.__distance<=5000:
+            return True
+        return False
+        
+    def forward_cargo(self):
+        if Customer.validate_customer_id(self.__from_customer) and Customer.validate_customer_id(self.__recipient_customer) and self.validate_distance() and self.validate_weight():
+            
+            Freight.counter += 2
+            
+            self.__freight_charge=self.__weight*150 + self.__distance*60
+            
+        else:
+            self.__freight_charge=0 
+    
+    def get_freight_charge(self):
+        return self.__freight_charge
+        
+    def get_freight_id(self):
+        return self.__freight_id
+        
+    def get_recipient_customer(self):
+        return self.__recipient_customer
+        
+    def get_from_customer(self):
+        return self.__from_customer
+        
+    def get_weight(self):
+        return self.__distance
+        
+    def get_distance(self):
+        return self.__distance"""
+"""class Bill:
+    counter=1000
+    def __init__(self) -> None:
+        self.__bill_id=None
+        self.__bill_amount=None
+
+    def generate_bill_amount(self,item_quantity,items):
+        self.__bill_amount=0
+        Bill.counter+=1
+        self.__bill_id="B"+str(Bill.counter)
+        for k,v in item_quantity.items():
+            for i in items:
+                if k.lower() == i.get_item_id().lower():
+                    self.__bill_amount+=v*i.get_price_per_quantity()
+
+
+    def get_bill_id(self):
+        return self.__bill_id
+    
+    def get_bill_amount(self):
+        return self.__bill_amount
+
+
+class Customer:
+    def __init__(self,customer_name) -> None:
+        self.__customer_name=customer_name
+        self.__payment_status=None
+
+    def pays_bill(self,bill):
+        self.__payment_status='Paid'
+        print("customer name:",self.get_customer_name,", bill id:",bill.get_bill_id(),", bill amount:",bill.get_bill_amount())
+
+    
+    def get_customer_name(self):
+        return self.__customer_name
+    
+    def get_payment_status(self):
+        return self.__payment_status
+
+class Item:
+    def __init__(self,item_id,description,price_per_quantity) -> None:
+        self.__item_id=item_id
+        self.__description=description
+        self.__price_per_quantity=price_per_quantity
+
+    def get_item_id(self):
+        return self.__item_id
+    
+    def get_description(self):
+        return self.__description
+    
+    def get_price_per_quantity(self):
+        return self.__price_per_quantity"""
+"""class Ticket:
+    counter=0
+    def __init__(self,passenger_name,source,destination) -> None:
+        self.__ticket_id=None
+        self.__passenger_name=passenger_name
+        self.__source=source
+        self.__destination=destination
+
+    def validate_source_destination(self):
+        if self.__source.lower() == 'Delhi'.lower() and self.__destination.lower() in ['mumbai', 'chennai', 'pune', 'kolkata']:
+            return True
+        return False
+    
+    def generate_ticket(self):
+        if self.validate_source_destination():
+            Ticket.counter+=1
+            self.__ticket_id=""+self.__source[0].upper()+self.__destination[0].upper()
+            if 1<=Ticket.counter<=9:
+                self.__ticket_id+='0'
+                self.__ticket_id+=str(Ticket.counter)
+            else:
+                self.__ticket_id+=str(Ticket.counter)
+        else:
+            self.__ticket_id=None
+    
+    def get_ticket_id(self):
+        return self.__ticket_id
+    
+    def get_passenger_name(self):
+        return self.__passenger_name
+    
+    def get_source(self):
+        return self.__source
+    
+    def get_destination(self):
+        return self.__destination"""
+"""#Tried
+class Applicant:
+    __application_dict={'A':0,'B':0,'C':0}
+    __applicant_id_count=1000
+
+    def __init__(self,applicant_name) -> None:
+        Applicant.__applicant_id_count=1000
+        Applicant.__applicant_id_count+=1
+        self.__applicant_id=None
+        self.__applicant_name=applicant_name
+        self.__job_band=None
+
+    def generate_applicant_id(self):
+        self.__applicant_id=Applicant.__applicant_id_count
+        Applicant.__applicant_id_count+=1
+        
+
+    def apply_for_job(self,job_band):
+        try:
+            if Applicant.__application_dict[job_band] == 5:
+                return -1
+            else:
+                Applicant.__application_dict[job_band]+=1
+                self.generate_applicant_id()
+                self.__job_band=job_band   
+        except:
+            print("some error occured")
+            
+    
+    @staticmethod
+    def get_application_dict():
+        return Applicant.__application_dict
+    
+    def get_applicant_id(self):
+        return self.__applicant_id
+    
+    def get_applicant_name(self):
+        return self.__applicant_name
+    
+    def get_job_band(self):
+        return self.__job_band
+    
+a=Applicant("Jack")
+Applicant._Applicant__applicant_dict={'C':0,'A':0,'B':0}
+a.apply_for_job('A')
+a.apply_for_job('A')
+a.apply_for_job('A')
+a.apply_for_job('A')
+a.apply_for_job('A')
+print(Applicant.get_application_dict(),a.get_applicant_id(),Applicant._Applicant__applicant_id_count)"""
+"""#Actual
+class Applicant:
+    __application_dict = {"A": 0, "B": 0, "C": 0}  # Private static dictionary to track application counts
+    __applicant_id_count = 1000  # Private static variable to keep track of the applicant ID
+    
+    def __init__(self, applicant_name):
+        self.__applicant_name = applicant_name  # Private instance variable for the applicant's name
+        self.__applicant_id = None  # Private instance variable for the applicant's ID
+        self.__job_band = None  # Private instance variable for the job band the applicant applied for
+    
+    def generate_applicant_id(self):
+        if Applicant.__applicant_id_count is None:
+            Applicant.__applicant_id_count = 1000  # Re-initialize if somehow set to None
+        # Increment the static applicant ID count and assign it to the instance variable
+        Applicant.__applicant_id_count += 1
+        self.__applicant_id = Applicant.__applicant_id_count
+    
+    def apply_for_job(self, job_band):
+        # Check if the application limit for the specified job band has been reached
+        if Applicant.__application_dict[job_band] is None:
+            Applicant.__application_dict[job_band] = 0  # Initialize if somehow set to None
+        
+        if Applicant.__application_dict[job_band] == 5:
+            return -1  # Return -1 if the limit has been reached
+        else:
+            # Increment the application count for the job band
+            Applicant.__application_dict[job_band] += 1
+            # Generate an applicant ID and set the job band
+            self.generate_applicant_id()
+            self.__job_band = job_band
+            return self.__applicant_id  # Return the applicant ID
+    
+    @staticmethod
+    def get_application_dict():
+        # Static method to return the application dictionary
+        return Applicant.__application_dict
+    
+    def get_applicant_id(self):
+        # Getter method for the applicant ID
+        return self.__applicant_id
+    
+    def get_applicant_name(self):
+        # Getter method for the applicant's name
+        return self.__applicant_name
+    
+    def get_job_band(self):
+        # Getter method for the job band
+        return self.__job_band
+
+# Testing the updated implementation
+
+# Create an applicant object
+a = Applicant("Jack")
+
+# The applicant applies for job band 'A' multiple times
+a.apply_for_job("A")
+a.apply_for_job("A")
+a.apply_for_job("A")
+a.apply_for_job("A")
+print(a.apply_for_job("A"))  # This should return the applicant ID or -1 if the limit is reached
+
+# Display the applicant's ID
+print(a.get_applicant_id())
+
+# Output the current state of application_dict
+print(Applicant.get_application_dict())
+"""
+    
+
+
+
+
+
+
+
 
 
 
