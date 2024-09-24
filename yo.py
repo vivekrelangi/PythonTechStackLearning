@@ -4762,7 +4762,475 @@ print(a.get_applicant_id())
 # Output the current state of application_dict
 print(Applicant.get_application_dict())
 """
+"""class Patient:
+    def __init__(self,patient_id,patient_name,list_of_lab_test_ids) -> None:
+        self.__patient_id=patient_id
+        self.__patient_name=patient_name
+        self.__list_of_lab_test_ids=list_of_lab_test_ids
+        self.__lab_test_charge=None
+
+    def calculate_lab_test_charge(self):
+        self.__lab_test_charge=0
+        for i in self.__list_of_lab_test_ids:
+            if LabTestRepository.get_test_charge(i)==-1:
+                self.__lab_test_charge+=0
+            else:
+                self.__lab_test_charge+=LabTestRepository.get_test_charge(i)
+
+    def get_patient_id(self):
+        return self.__patient_id
     
+    def get_patient_name(self):
+        return self.__patient_name
+    
+    def get_list_of_lab_test_ids(self):
+        return self.__list_of_lab_test_ids
+    
+    def get_lab_test_charge(self):
+        return self.__lab_test_charge
+    
+class LabTestRepository:
+    __list_of_hospital_lab_test_ids=["L101","L102","L103","L104"]
+    __list_of_lab_test_charge=[2020,1750.50,5700,1320.50]
+    # def __init__(self) -> None:
+    #     pass
+    @staticmethod
+    def get_test_charge(lab_test_id):
+        if lab_test_id == None or lab_test_id not in LabTestRepository.__list_of_hospital_lab_test_ids:
+            return -1
+        else:
+            return LabTestRepository.__list_of_lab_test_charge[LabTestRepository.__list_of_hospital_lab_test_ids.index(lab_test_id)]
+
+lab_test_list1=["L101","L103","L104",'L105']
+patient1=Patient(1010,"Sam",lab_test_list1)
+patient1.calculate_lab_test_charge()
+print("Patient id:",patient1.get_patient_id(),"\nPatient name:",patient1.get_patient_name(),"\nPatient's test ids:",patient1.get_list_of_lab_test_ids(), "\nTotal lab test charge:",patient1.get_lab_test_charge())    """
+"""class Multiplex:
+    #__counter=0
+    __list_movie_name=["movie1","movie2"]
+    __list_total_tickets=[100,60]
+    __list_last_seat_number=[None,None]
+    __list_ticket_price=[150,200]
+    def __init__(self):
+        self.__seat_numbers=None
+        self.__total_price=None
+    def calculate_ticket_price(self,movie_index,number_of_tickets):
+        self.__total_price= Multiplex.__list_ticket_price[movie_index]*number_of_tickets
+    def check_seat_availability(self,movie_index,number_of_tickets):
+        if(Multiplex.__list_total_tickets[movie_index]<number_of_tickets):
+            return False
+        else:
+            return True
+    def get_total_price(self):
+        return self.__total_price
+    def get_seat_numbers(self):
+        return self.__seat_numbers
+    def book_ticket(self, movie_name, number_of_tickets):
+        '''Write the logic to book the given number of tickets for the specified movie.'''
+        if movie_name not in Multiplex.__list_movie_name:
+            return 0
+        elif self.check_seat_availability(Multiplex.__list_movie_name.index(movie_name), number_of_tickets) == False:
+            return -1
+        else:
+            self.__seat_numbers=self.generate_seat_number(Multiplex.__list_movie_name.index(movie_name), number_of_tickets)
+            self.calculate_ticket_price(Multiplex.__list_movie_name.index(movie_name), number_of_tickets)
+    def  generate_seat_number(self,movie_index, number_of_tickets):
+        '''Write the logic to generate and return the list of seat numbers'''
+        generated_seats=[]
+        if Multiplex.__list_movie_name[movie_index] == "movie1":
+            if Multiplex.__list_last_seat_number[0]==None:
+                for i in range(1,number_of_tickets+1):
+                    Multiplex.__list_last_seat_number[0]="M1-"+str(i)
+                    Multiplex.__list_total_tickets[0]-=1
+                    generated_seats.append(Multiplex.__list_last_seat_number[0])
+                return generated_seats
+            else:
+                s=Multiplex.__list_last_seat_number[0].split("-")
+                for i in range(1,number_of_tickets+1):
+                    Multiplex.__list_last_seat_number[0]="M1-"+str(int(s[1])+i)
+                    Multiplex.__list_total_tickets[0]-=1
+                    generated_seats.append(Multiplex.__list_last_seat_number[0])
+                return generated_seats
+        elif Multiplex.__list_movie_name[movie_index] == "movie2":
+            if Multiplex.__list_last_seat_number[1]==None:
+                for i in range(1,number_of_tickets+1):
+                    Multiplex.__list_last_seat_number[1]="M2-"+str(i)
+                    Multiplex.__list_total_tickets[1]-=1
+                    generated_seats.append(Multiplex.__list_last_seat_number[1])
+                return generated_seats
+            else:
+                s=Multiplex.__list_last_seat_number[1].split("-")
+                for i in range(1,number_of_tickets+1):
+                    Multiplex.__list_last_seat_number[1]="M2-"+str(int(s[1])+i)
+                    Multiplex.__list_total_tickets[1]-=1
+                    generated_seats.append(Multiplex.__list_last_seat_number[1])
+                return generated_seats
+        
+booking1=Multiplex()
+status=booking1.book_ticket("movie1",10)
+if(status==0):
+    print("invalid movie name")
+elif(status==-1):
+    print("Tickets not available for movie-1")
+else:
+    print("Booking successful")
+    print("Seat Numbers :", booking1.get_seat_numbers())
+    print("Total amount to be paid:", booking1.get_total_price())
+print("-----------------------------------------------------------------------------")
+booking2=Multiplex()
+status=booking2.book_ticket("movie2",6)
+if(status==0):
+    print("invalid movie name")
+elif(status==-1):
+    print("Tickets not available for movie-2")
+else:
+    print("Booking successful")
+    print("Seat Numbers :", booking2.get_seat_numbers())
+    print("Total amount to be paid:", booking2.get_total_price())"""
+"""class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class FeaturePhone(Phone):
+    pass
+
+class SmartPhone(Phone):
+    def __init__(self, os, ram):
+        self.os = os
+        self.ram = ram
+        print ("Inside SmartPhone constructor")
+
+    def buy(self):
+        print ("Buying a SmartPhone")
+
+s=SmartPhone("Android", 2)
+
+print(s.os)
+print(s.brand)"""
+"""class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class FeaturePhone(Phone):
+    pass
+
+class SmartPhone(Phone):
+    pass
+
+s=SmartPhone(20000, "Apple", 13)
+
+s.buy()"""
+"""class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class FeaturePhone(Phone):
+    pass
+
+class SmartPhone(Phone):
+    def buy(self):
+        #super().buy()
+
+        print ("Buying a smartphone")
+
+s=SmartPhone(20000, "Apple", 13)
+
+s.buy()"""
+"""class Rider:
+    def __init__(self,trained_status,experience) -> None:
+        self.__trained_status=trained_status
+        self.__experience=experience
+
+    def rides_vehicle(self):
+        print("Rides Vehicle")
+
+class CycleRider(Rider):
+    def rides_blindfolded(self):
+        print("Rides Blindfolded")
+
+class BikeRider(Rider):
+    def __init__(self, trained_status, experience,race_license) -> None:
+        super().__init__(trained_status, experience)
+        self.__race_license=race_license
+
+    def rides_in_dome(self):
+        print("Rides In Dome")"""
+"""#Multilevel Inheritance
+class Product:
+    def review(self):
+        print ("Product customer review")
+
+class Phone(Product):
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class SmartPhone(Phone):
+    pass
+
+s=SmartPhone(20000, "Apple", 12)
+
+s.buy()
+s.review()"""
+"""#Hierarchical Inheritance
+class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class SmartPhone(Phone):
+    pass
+
+class FeaturePhone(Phone):
+    pass
+
+SmartPhone(1000,"Apple","13px").buy()"""
+"""#Multiple Inheritance
+class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class Product:
+    def review(self):
+        print ("Customer review")
+
+class SmartPhone(Phone, Product):
+    pass
+
+s=SmartPhone(20000, "Apple", 12)
+
+s.buy()
+s.review()"""
+"""#Multiple Inhritance another example
+class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print ("Buying a phone")
+
+    def return_phone(self):
+        print ("Returning a phone")
+
+class Product:
+    def buy(self):
+        print ("Product buy method")
+
+class SmartPhone(Product, Phone):
+    pass
+
+s=SmartPhone(20000, "Apple", 12)
+
+s.buy()"""
+"""class Apparel:
+    counter=100
+    def __init__(self,price,item_type) -> None:
+        self.__item_id=None
+        self.__price=price
+        self.__item_type=item_type
+        Apparel.counter+=1
+        self.__item_id=""+self.__item_type[0]+str(Apparel.counter)
+    
+    def calculate_price(self):
+        self.__price+=(self.__price/20)
+
+    def get_item_id(self):
+        return self.__item_id
+    
+    def get_price(self):
+        return self.__price
+    
+    def get_item_type(self):
+        return self.__item_type
+    
+    def set_price(self,price):
+        self.__price=price
+
+class Cotton(Apparel):
+    def __init__(self, price, discount):
+        super().__init__(price, item_type="Cotton")
+        self.__discount=discount
+        #self.__price=price
+    def calculate_price(self):
+        super().calculate_price()
+        p=super().get_price()
+        p-=(p*(self.__discount/100))
+        p+=(p/20)
+        super().set_price(p)
+
+    def get_discount(self):
+        return self.__discount
+
+class Silk(Apparel):
+    def __init__(self, price):
+        super().__init__(price, item_type="Silk")
+        self.__points=None
+
+    def calculate_price(self):
+        super().calculate_price()
+        p=super().get_price()
+        if p>10000:
+            self.__points=10
+        else:
+            self.__points=3
+        p+=(p/10)
+        super().set_price(p)
+        
+    def get_points(self):
+        return self.__points
+    
+c=Cotton(8000,2)
+c.calculate_price()
+print(c.get_discount(),c.get_item_type(),c.get_item_id(),c.get_price())
+s=Silk(10001)
+s.calculate_price()
+print(s.get_points(),s.get_price(),s.get_item_id(),s.get_item_type())"""
+"""class Purchase:
+    __counter=101
+    def __init__(self,customer,fruit_name,quantity):
+        self.__customer=customer
+        self.__fruit_name=fruit_name
+        self.__quantity=quantity
+        self.__purchase_id=None
+
+    def get_purchase_id(self):
+        return self.__purchase_id
+    
+    def get_customer(self):
+        return self.__customer
+    
+    def get_quantity(self):
+        return self.__quantity
+    
+    def calculate_price(self):
+        price=FruitInfo.get_fruit_price(self.__fruit_name)
+        if price!=-1:
+            totalfruitprice=price*self.__quantity
+            if price == max(FruitInfo.get_fruit_price_list()) and self.__quantity>1:
+                totalfruitprice-=(totalfruitprice/50)
+            elif price == min(FruitInfo.get_fruit_price_list()) and self.__quantity>=5:
+                totalfruitprice-=(totalfruitprice/20)
+            if self.__customer._Customer__cust_type == "wholesale":
+                totalfruitprice-=(totalfruitprice/10)
+            self.__purchase_id="P"+str(Purchase.__counter)
+            Purchase.__counter+=1
+            return totalfruitprice
+        else:
+            return -1
+
+class Customer:
+    def __init__(self, customer_name, cust_type):
+        self.__customer_name=customer_name
+        self.__cust_type=cust_type
+
+    def get_customer_name(self):
+        return self.__customer_name
+    
+    def get_customer_type(self):
+        return self.__cust_type
+    
+class FruitInfo:
+    __fruit_name_list=['Apple','Guava','Orange','Grape','Sweet Lime']
+    __fruit_price_list=[200,80,70,110,60]
+
+    @staticmethod
+    def get_fruit_price(fruit_name):
+        for i in range(len(FruitInfo.__fruit_name_list)):
+            if FruitInfo.__fruit_name_list[i]==fruit_name:
+                return FruitInfo.__fruit_price_list[i]
+        return -1
+    
+    @staticmethod
+    def get_fruit_name_list():
+        return FruitInfo.__fruit_name_list
+    
+    @staticmethod
+    def get_fruit_price_list():
+        return FruitInfo.__fruit_price_list
+
+c=Customer("Tom","wholesale")
+FruitInfo._FruitInfo__fruit_price_list=[100, 800, 70, 110, 600]
+FruitInfo._FruitInfo__fruit_name_list=['Apple', 'Guava', 'Orange', 'Grape', 'Sweet Lime']
+FruitInfo._Purchase__counter=101
+p=Purchase(c,"Apple",10)
+p.calculate_price()
+p.calculate_price()
+p.calculate_price()
+p.calculate_price()
+print(p.calculate_price(),p.get_purchase_id())"""
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
 
 
 
