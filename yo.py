@@ -1,3 +1,4 @@
+#from __future__ import braces
 """print(type(3))
 print(type("Hello World"))
 print(type(False))
@@ -5298,6 +5299,559 @@ class Customer:
     #Remove pass and implement class Customer here
     #Represent customers and display all details of the customer, if he is able to book the ticket and play the game. Else, display appropriate error message
 """
+"""class Product:
+    def return_policy(self):
+        pass
+class Mobile(Product):
+    pass
+class Shoe(Product):
+    pass
+"""
+"""class Product:
+    def return_policy(self):
+        pass
+
+class Mobile(Product):
+    def return_policy(self):
+        print("All mobiles must be returned within 10 days of purchase")
+
+class Shoe(Product):
+    def return_policy(self):
+        print("All shoes must be returned within 7 days of purchase")
+                                                    
+m=Mobile()
+m.return_policy()
+s=Shoe()
+s.return_policy()"""
+"""from abc import ABCMeta, abstractmethod
+class Product(metaclass=ABCMeta):
+    @abstractmethod
+    def return_policy(self):
+        pass"""
+"""from abc import ABCMeta, abstractmethod
+class Product(metaclass=ABCMeta):
+    @abstractmethod
+    def return_policy(self):
+        pass
+
+Product()"""
+"""from abc import ABCMeta, abstractmethod
+class Product(metaclass=ABCMeta):
+    @abstractmethod
+    def return_policy(self):
+        pass
+
+class Furniture(Product):
+    pass
+
+Furniture()"""
+"""from abc import ABCMeta, abstractmethod
+class Product(metaclass=ABCMeta):
+    @abstractmethod
+    def return_policy(self):
+        pass
+
+class Furniture(Product):
+    def return_policy(self):
+        print("Furnitures cannot be returned")
+
+class Sofa(Furniture):
+    pass
+
+Sofa()"""
+"""from abc import ABCMeta, abstractmethod
+class DirectToHomeService(metaclass=ABCMeta):
+    __counter=101
+    def __init__(self,consumer_name) -> None:
+        self.__consumer_number=DirectToHomeService.__counter
+        DirectToHomeService.__counter+=1
+        self.__consumer_name=consumer_name
+
+    def get_consumer_name(self):
+        return self.__consumer_name
+    
+    def get_consumer_number(self):
+        return self.__consumer_number
+    
+    @abstractmethod
+    def calculate_monthly_rent(self):
+        pass
+
+class BasePackage(DirectToHomeService):
+    def __init__(self, consumer_name, base_pack_name, subscription_period) -> None:
+        super().__init__(consumer_name)
+        self.__subscription_period=subscription_period
+        self.__base_pack_name=base_pack_name
+
+    def get_base_pack_name(self):
+        return self.__base_pack_name
+    
+    def get_subscription_period(self):
+        return self.__subscription_period
+    
+    def validate_base_pack_name(self):
+        if self.__base_pack_name in ["Silver","Gold","Platinum"]:
+            pass
+        else:
+            self.__base_pack_name="Silver"
+            print("Base package name is incorrect, set to Silver")
+
+    def calculate_monthly_rent(self):
+        if self.__subscription_period in range(1,25):
+            self.validate_base_pack_name()
+            monthly_rent=0
+            if self.__base_pack_name == "Silver":
+                monthly_rent=350.00
+            elif self.__base_pack_name == "Gold":
+                monthly_rent=440.00
+            else:
+                monthly_rent=560.00
+            discount_amount=0
+            if self.__subscription_period>12:
+                discount_amount=monthly_rent
+            final_monthly_rent=((monthly_rent*self.__subscription_period)-discount_amount)/self.__subscription_period
+            return final_monthly_rent
+        return -1"""
+"""class CreditCard:
+    def __init__(self, card_no, balance):
+        self.card_no = card_no
+        self.balance = balance
+class Customer:
+    def __init__(self,cards):
+        self.cards=cards
+    def purchase_item(self, price, card_no):
+        if price < 0:
+            raise Exception("Invalid Price")
+        if card_no not in self.cards:
+            raise Exception("Wrong Card Number")
+        if price>self.cards[card_no].balance:
+            raise Exception("Insufficient Balance, Try choosing another card")
+card1=CreditCard(101,800)
+card2=CreditCard(102,2000)
+cards={card1.card_no:card1,card2.card_no:card2}
+c=Customer(cards)
+while(True):
+    card_no=int(input("Please enter a card number"))
+    try:
+        c.purchase_item(1200,card_no)
+        break
+    except Exception as e:
+        if str(e) == "Invalid Price":
+            print(str(e))
+            break
+        elif str(e) == "Insufficient Balance, Try choosing another card":
+            print(str(e))
+            continue 
+            # break
+        elif str(e) == "Wrong Card Number":
+            print(str(e))
+            continue
+        print("Something went wrong. "+str(e))"""
+"""class InvalidPrice(Exception):
+    pass
+class WrongCard(Exception):
+    pass
+class InsufficientBalance(Exception):
+    pass
+class CreditCard:
+    def __init__(self, card_no, balance):
+        self.card_no = card_no
+        self.balance = balance
+class Customer:
+    def __init__(self,cards):
+        self.cards=cards
+    def purchase_item(self, price, card_no):
+        if price < 0:
+            raise InvalidPrice("Invalid Price")
+        if card_no not in self.cards:
+            raise WrongCard("Wrong Card Number")
+        if price>self.cards[card_no].balance:
+            raise InsufficientBalance("Insufficient Balance, Try choosing another card")
+card1=CreditCard(101,800)
+card2=CreditCard(102,2000)
+cards={card1.card_no:card1,card2.card_no:card2}
+c=Customer(cards)
+while(True):
+    card_no=int(input("Please enter a card number"))
+    try:
+        c.purchase_item(1200,card_no)
+        break
+    # except Exception as e:
+    #     if str(e) == "Invalid Price":
+    #         print(str(e))
+    #         break
+    #     elif str(e) == "Insufficient Balance, Try choosing another card":
+    #         print(str(e))
+    #         continue 
+    #         # break
+    #     elif str(e) == "Wrong Card Number":
+    #         print(str(e))
+    #         continue
+    #     print("Something went wrong. "+str(e))
+    except InvalidPrice as e:
+        print(str(e))
+        break
+    except InsufficientBalance as e:
+        print(str(e))
+        continue
+    except WrongCard as e:
+        print(str(e))
+        continue
+    # except KeyboardInterrupt as k:
+    #     print(str(k))
+    #     break
+    except Exception as e:
+        print("Something went wrong. "+str(e))"""
+"""class InvalidPrice(Exception):
+    pass
+class WrongCard(Exception):
+    pass
+
+try:
+    raise InvalidPrice()
+# except Exception as e:
+#     print("Exception")
+except InvalidPrice:
+    print("InvalidPrice")
+except WrongCard:
+    print("WrongCard")
+except Exception as e:
+    print("Exception")"""
+"""try:
+    1/0
+# except Exception:
+#     print("Exception")
+except ZeroDivisionError:
+    print("Zero division")
+except Exception:
+    print("Exception")"""
+"""
+#Tried
+class Company:
+    #Stores hike% based on job level.
+    dict_hike={"A":5, "B":6, "C":10 , "D":11}
+    #Consider incentive provided in all classes to be in Rupees(Rs).
+    __c_incentive=5000
+    def __init__(self,name):
+        self.name=name
+    @staticmethod
+    def get_c_incentive():
+        return Company.__c_incentive
+class Employee:
+    def __init__(self, emp_id,e_incentive, job_level,salary, performance_list):
+        self.emp_id=emp_id
+        self.__e_incentive=e_incentive
+        self.__salary=salary
+        self.__job_level=job_level
+        self.__performance_list=performance_list
+    def get_e_incentive(self):
+        return self.__e_incentive
+    def get_performance_list(self):
+        return self.__performance_list
+    def get_salary(self):
+        return self.__salary
+    def get_job_level(self):
+        return self.__job_level
+    def identify_performance_hike(self):
+        return None
+    def identify_job_level_hike(self):
+        return None
+    def identify_incentive(self):
+        return None
+    def update_salary(self,hike, incentive):
+        self.__salary= (self.__salary+ self.__salary*hike/100) + incentive
+    def calculate_salary(self):
+        jl_hike=self.identify_job_level_hike()
+        ex_hike=self.identify_performance_hike()
+        if(jl_hike!=None):
+            hike=jl_hike
+            if(ex_hike!=None):
+                hike+=ex_hike
+            incentive=self.identify_incentive()
+            self.update_salary(hike, incentive)
+            return True
+        else:
+            return False
+#Implement the class here
+class PermanentEmployee(Employee):
+    def __init__(self,emp_id, e_incentive, job_level, salary, performance_list, p_incentive):
+        # self.__p_incentive=p_incentive
+        super().__init__(emp_id,e_incentive, job_level,salary, performance_list)
+        self.__p_incentive=p_incentive
+        # self.emp_id=emp_id
+        # self.__e_incentive=e_incentive
+        # self.__salary=salary
+        # self.__job_level=job_level
+        # self.__performance_list=performance_list
+    # def get_e_incentive(self):
+    #     return self.__e_incentive
+    # def get_performance_list(self):
+    #     return self.__performance_list
+    # def get_salary(self):
+    #     return self.__salary
+    # def get_job_level(self):
+    #     return self.__job_level
+    def identify_performance_hike(self):
+        performance_list=self.get_performance_list()
+        if performance_list[4]==1 and performance_list[3]==1:
+            return 5
+        elif performance_list[4]==1 and performance_list[3]==2 and performance_list[2]==1:
+            return 3
+        return None
+    def identify_job_level_hike(self):
+        job_level=Employee.get_job_level(self)
+        if job_level in Company.dict_hike.keys():
+            return Company.dict_hike[job_level]
+        return None
+    def identify_incentive(self):
+        c_incentive=Company.get_c_incentive()
+        e_incentive=Employee.get_e_incentive(self)
+        return c_incentive + e_incentive + self.__p_incentive
+    # def update_salary(self,hike, incentive):
+    #     self.__salary= (self.__salary+ self.__salary*hike/100) + incentive
+    def calculate_salary(self):
+        jl_hike=self.identify_job_level_hike()
+        ex_hike=self.identify_performance_hike()
+        if(jl_hike!=None):
+            hike=jl_hike
+            if(ex_hike!=None):
+                hike+=ex_hike
+            incentive=self.identify_incentive()
+            Employee.update_salary(self,hike, incentive)
+            return True
+        else:
+            return False
+        #super().calculate_salary()
+    
+    def get_p_incentive(self):
+        return self.__p_incentive
+
+c=Company("AXR Limited")
+p=PermanentEmployee(2134,1000,"A",130000,[1,2,1,1,1], 3000)  
+print(p.calculate_salary(),p.get_salary())"""
+"""#Actual code
+class Company:
+    #Stores hike% based on job level.
+    dict_hike={"A":5, "B":6, "C":10 , "D":11}
+    #Consider incentive provided in all classes to be in Rupees(Rs).
+    __c_incentive=5000
+    def __init__(self,name):
+        self.name=name
+    @staticmethod
+    def get_c_incentive():
+        return Company.__c_incentive
+class Employee:
+    def __init__(self, emp_id,e_incentive, job_level,salary, performance_list):
+        self.emp_id=emp_id
+        self.__e_incentive=e_incentive
+        self.__salary=salary
+        self.__job_level=job_level
+        self.__performance_list=performance_list
+    def get_e_incentive(self):
+        return self.__e_incentive
+    def get_performance_list(self):
+        return self.__performance_list
+    def get_salary(self):
+        return self.__salary
+    def get_job_level(self):
+        return self.__job_level
+    def identify_performance_hike(self):
+        return None
+    def identify_job_level_hike(self):
+        return None
+    def identify_incentive(self):
+        return None
+    def update_salary(self,hike, incentive):
+        self.__salary= (self.__salary+ self.__salary*hike/100) + incentive
+    def calculate_salary(self):
+        jl_hike=self.identify_job_level_hike()
+        ex_hike=self.identify_performance_hike()
+        if(jl_hike!=None):
+            hike=jl_hike
+            if(ex_hike!=None):
+                hike+=ex_hike
+            incentive=self.identify_incentive()
+            self.update_salary(hike, incentive)
+            return True
+        else:
+            return False
+#Implement the class here
+class PermanentEmployee(Employee):
+    def __init__(self, emp_id,e_incentive, job_level,salary, performance_list,p_incentive):
+        super().__init__(emp_id,e_incentive, job_level,salary, performance_list)
+        self.__p_incentive=p_incentive
+        
+    
+    def get_p_incentive(self):
+        return self.__p_incentive
+        
+    def identify_performance_hike(self):
+        performance_list=self.get_performance_list()
+        if performance_list[4]==1 and performance_list[3]==1:
+            hike=5 
+        elif performance_list[4]==1 and performance_list[3]==2 and performance_list[2]==1:
+            hike=3 
+        else:
+            hike = None
+        return hike
+        
+    def identify_job_level_hike(self):
+        job_level = Employee.get_job_level(self)
+        if job_level in Company.dict_hike.keys():
+            job_hike=Company.dict_hike[job_level]
+            return job_hike
+        else:
+            return None
+            
+    def identify_incentive(self):
+        c_incentive=Company.get_c_incentive()
+        e_incentive=Employee.get_e_incentive(self)
+        incentive=e_incentive + self.__p_incentive + c_incentive
+        return incentive
+        
+    def calculate_salary(self):
+        jl_hike=self.identify_job_level_hike()
+        ex_hike=self.identify_performance_hike()
+        if(jl_hike!=None):
+            hike=jl_hike
+            if(ex_hike!=None):
+                hike+=ex_hike
+            incentive=self.identify_incentive()
+            Employee.update_salary(self, hike, incentive)
+            return True
+        else:
+            return False
+            
+p = PermanentEmployee(2134,1000,"A",130000,[1, 2, 1, 1, 1],3000)
+#Implement the class here"""
+"""class Customer:
+    def __init__(self, customer_name, quantity):
+        self.__customer_name=customer_name
+        self.__quantity=quantity
+
+    def validate_quantity(self):
+        if 1<=self.__quantity<=5:
+            return True
+        return False
+
+    def get_customer_name(self):
+        return self.__customer_name
+        
+    def get_quantity(self):
+        return self.__quantity
+
+class Pizzaservice:
+    counter=100
+    def __init__(self, customer, pizza_type, additional_topping):
+        self.__customer=customer
+        self.__pizza_type=pizza_type
+        self.__additional_topping=additional_topping
+        self.__service_id=None
+        self.pizza_cost=None
+
+    def validate_pizza_type(self):
+        if self.__pizza_type.lower() in ["small","medium"]:
+            return True
+        return False
+
+    def calculate_pizza_cost(self):
+        if self.validate_pizza_type() and self.__customer.validate_quantity():
+            if self.__pizza_type.lower() == "small":
+                if self.__additional_topping:
+                    self.pizza_cost=185 * self.__customer.get_quantity() 
+                else:
+                    self.pizza_cost=150 * self.__customer.get_quantity()
+            elif self.__pizza_type.lower() == "medium":
+                if self.__additional_topping:
+                    self.pizza_cost=250 * self.__customer.get_quantity()
+                else:
+                    self.pizza_cost=200 * self.__customer.get_quantity()
+            Pizzaservice.counter+=1
+            self.__service_id=self.__pizza_type[0]+str(Pizzaservice.counter)
+        else:
+            self.pizza_cost=-1
+
+    def get_service_id(self):
+        return self.__service_id
+
+    def get_pizza_type(self):
+        return self.__pizza_type
+
+    def get_customer(self):
+        return self.__customer
+    
+    def get_additional_topping(self):
+        return self.__additional_topping
+
+class Doordelivery(Pizzaservice):
+    def __init__(self, customer, pizza_type, additional_topping, distance_in_kms):
+        super().__init__(customer, pizza_type, additional_topping)
+        self.__delivery_charge=None
+        self.__distance_in_kms=distance_in_kms
+
+    def validate_distance_in_kms(self):
+        if 1<=self.__distance_in_kms<=10:
+            return True
+        return False
+
+    def calculate_pizza_cost(self):
+        if self.validate_distance_in_kms():
+            super().calculate_pizza_cost()
+            if self.pizza_cost!=-1:
+                if self.__distance_in_kms<=5:
+                    self.__delivery_charge=self.__distance_in_kms*5
+                    self.pizza_cost+=self.__delivery_charge
+                else:
+                    self.__delivery_charge=25+(self.__distance_in_kms-5)*7
+                    self.pizza_cost+=self.__delivery_charge
+        else:
+            self.pizza_cost=-1
+
+    def get_delivery_charge(self):
+        return self.__delivery_charge
+
+    def get_distance_in_kms(self):
+        return self.__distance_in_kms
+
+c = Customer("Asha",3)
+p = Pizzaservice(c, "Medium", False)
+#d = Doordelivery()
+p.calculate_pizza_cost()
+print(p.pizza_cost)"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+                                                    
+                                                    
+                                                    
+                                                    
+
+
+
+
+
+                                                    
 
 
 
