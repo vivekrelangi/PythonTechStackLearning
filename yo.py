@@ -5944,6 +5944,211 @@ g=Graduate("A","Amit",5000,"Bachelors",5)
 l=Lateral("D","Barghav",5000,"Masters","AGPT")
 print(g.calculate_gross_salary())
 print(l.calculate_gross_salary())"""
+"""from abc import ABCMeta, abstractmethod
+class Logistics(metaclass=ABCMeta):
+    __counter=7000  
+    def __init__(self,start_reading,end_reading):
+        self.__consumer_id=None
+        self.__start_reading=start_reading
+        self.__end_reading=end_reading
+    def get_consumer_id(self):
+        return self.__consumer_id
+    def get_start_reading(self):
+        return self.__start_reading
+    def get_end_reading(self):
+        return self.__end_reading
+    def validate_meter_reading(self):
+        if(self.__start_reading < self.__end_reading):
+            return True
+        else:
+            return False
+    def generate_consumer_id(self):
+        if Logistics.__counter == None:
+            Logistics.__counter=7000
+        Logistics.__counter+=1
+        self.__consumer_id=Logistics.__counter # implement the code to generate the consumer id
+    @abstractmethod
+    def calculate_bill_amount(self):
+        pass
+class PassengerLogistics(Logistics):
+    __list_vehicle=["BMW","TOYOTA","FORD"]
+    __list_minimum_charge=[3000,1500,1000] #these lists are storing vehicle type, minimum charge, rate per kilometer for first hundred and rate per kilometer for rest of distance
+    __list_charge_for_hundred=[30,15,10]   #there is a one to one correspondence
+    __list_charge_after_hundred=[25,12,7]
+    def __init__(self,vehicle_type,start_reading,end_reading):
+        super().__init__(start_reading,end_reading)
+        self.__vehicle_type=vehicle_type
+    def get_vehicle_type(self):
+        return self.__vehicle_type
+    def validate_vehicle_type(self):
+        for index in range(0,len(PassengerLogistics.__list_vehicle)):
+            if(PassengerLogistics.__list_vehicle[index]==self.__vehicle_type):
+                print(PassengerLogistics.__list_vehicle[index],self.__vehicle_type)
+                return index
+        return -1
+        # if self.__vehicle_type in PassengerLogistics.__list_vehicle:
+        #     return PassengerLogistics.__list_vehicle.index(self.__vehicle_type)
+        # else:
+        #     return -1
+    def calculate_bill_amount(self):
+        if self.validate_vehicle_type()!=-1 and self.validate_meter_reading():
+            # print("yes")
+            self.generate_consumer_id()
+            distance_travelled=self.get_end_reading()-self.get_start_reading()
+            bill_amount=0
+            if distance_travelled<=100:
+                bill_amount=PassengerLogistics.__list_charge_for_hundred[PassengerLogistics.__list_vehicle.index(self.__vehicle_type)]*distance_travelled
+            else:
+                bill_amount=PassengerLogistics.__list_charge_for_hundred[PassengerLogistics.__list_vehicle.index(self.__vehicle_type)]*100+PassengerLogistics.__list_charge_after_hundred[PassengerLogistics.__list_vehicle.index(self.__vehicle_type)]*(distance_travelled-100)
+            if bill_amount<PassengerLogistics.__list_minimum_charge[PassengerLogistics.__list_vehicle.index(self.__vehicle_type)]:
+                bill_amount=PassengerLogistics.__list_minimum_charge[PassengerLogistics.__list_vehicle.index(self.__vehicle_type)]
+            bill_amount+=bill_amount*0.05
+        else:
+            # if self.validate_vehicle_type()==False:
+            #     print("no1")
+            # else:
+            #     print("yes1")
+            # if self.validate_meter_reading()==False:
+            #     print("no2")
+            # else:
+            #     print("yes2")
+            # print("no")
+            bill_amount=-1
+        return bill_amount
+             # implement the code to calculate the bill amount according to the requirement
+class GoodsLogistics(Logistics):
+    __carrier_dict={"TATA":20,"EICHER":30,"FORCE":35} # stores the carrier type and rate per kilometer for 1000kg
+    def __init__(self,carrier_type,goods_weight,start_reading,end_reading):
+        super().__init__(start_reading,end_reading)
+        self.__carrier_type=carrier_type
+        self.__goods_weight=goods_weight
+    def get_carrier_type(self):
+        return self.__carrier_type
+    def get_goods_weight(self):
+        return self.__goods_weight
+    def validate_carrier_type(self):
+        for carrier in GoodsLogistics.__carrier_dict.keys():
+            if(carrier==self.__carrier_type):
+                return True
+        return False
+    def calculate_bill_amount(self):
+        if(self.validate_carrier_type()):
+            if(self.validate_meter_reading()):
+                # print("yes")
+                self.generate_consumer_id()
+                total_distance=self.get_end_reading()-self.get_start_reading()
+                if(self.__goods_weight<=1000):
+                    charge_per_kilometer=self.__carrier_dict[self.__carrier_type]
+                elif(self.__goods_weight >1000 and self.__goods_weight<=2000):
+                    charge_per_kilometer=self.__carrier_dict[self.__carrier_type]*2
+                elif(self.__goods_weight >2000 and self.__goods_weight<=3000):
+                    charge_per_kilometer=self.__carrier_dict[self.__carrier_type]*4
+                else:
+                    charge_per_kilometer=200
+                bill_amount=total_distance*charge_per_kilometer
+                bill_amount=bill_amount+(bill_amount*0.1)+2000
+                return bill_amount
+            else:
+                # print("no1")
+                return -1
+        else:
+            # print("no2")
+            return -1
+passenger_logistic=PassengerLogistics("BMW1",300,400)
+bill_amount=passenger_logistic.calculate_bill_amount()
+if(bill_amount==-1):
+    print("Invalid vehicle type or meter reading ")
+else:
+    print("Consumer id    :",passenger_logistic.get_consumer_id())
+    print("Start reading  :",passenger_logistic.get_start_reading())
+    print("End reading    :",passenger_logistic.get_end_reading())
+    print("Total Amount   :",bill_amount)
+print("------------------------------------------------------------")
+goods_logistic=GoodsLogistics("FORCE",3000,300,400)
+bill_amount=goods_logistic.calculate_bill_amount()
+if(bill_amount==-1):
+    print("Invalid career type or meter reading ")
+else:
+    print("Consumer id    :",goods_logistic.get_consumer_id())
+    print("Goods weight   :",goods_logistic.get_goods_weight())
+    print("Start reading  :",goods_logistic.get_start_reading())
+    print("End reading    :",goods_logistic.get_end_reading())
+    print("Total Amount   :",bill_amount)"""
+"""class Employee:
+    __Emp_count=0
+    def __init__(self, name):
+        self.__name = name
+        Employee.__Emp_count += 1
+    
+    def is_eligible_for_discount(self):
+        if(Employee.__Emp_count > 5):
+            return False
+        else:
+            return True
+    
+    def hi(self):
+        print("hi")
+        #return "hi"
+    #hi()
+    def get_discount(self):
+        if(self.is_eligible_for_discount()): 
+            return 10
+        else:
+            return 0
+       
+employee1 = Employee ("John")
+print(employee1.get_discount())"""
+class Purchase:
+    list_of_items=['Apple', 'Biscuits', 'Chocolates', 'Jam', 'Butter', 'Milk', 'Soap', 'Hand Sanitizer']
+    list_of_count_of_each_item_sold=[0, 0, 0, 0, 0, 0, 0, 0]
+
+    def __init__(self):
+        self.__items_purchased=[]
+        self.__item_on_offer=None
+
+    def get_items_purchased(self):
+        return self.__items_purchased
+
+    def get_item_on_offer(self):
+        return self.__item_on_offer
+
+    def sell_items(self, list_of_items_to_be_purchased):
+        #itemsinlowercase=[]
+        for item in list_of_items_to_be_purchased:
+            for i in Purchase.list_of_items:
+                if item.lower()==i.lower():
+                    Purchase.list_of_count_of_each_item_sold[Purchase.list_of_items.index(i)]+=1
+            # if item.lower()=="soap":
+            #     self.provide_offer()
+                    self.__items_purchased.append(item)
+        for item in self.__items_purchased:
+            if item.lower() == "soap":
+                self.provide_offer()
+        # if "soap" in self.__items_purchased:
+        #     self.provide_offer()
+
+    def provide_offer(self):
+        # if "soap" in self.__items_purchased:
+        #     Purchase.list_of_count_of_each_item_sold[4]+=1
+        #     self.__item_on_offer="HAND SANITIZER"
+        for item in self.__items_purchased:
+            if item.lower() == "soap":
+                for itm in Purchase.list_of_items:
+                    if itm.lower() == "hand sanitizer":
+                        Purchase.list_of_count_of_each_item_sold[Purchase.list_of_items.index(itm)]+=1
+                self.__item_on_offer="HAND SANITIZER"
+
+    @staticmethod
+    def find_total_items_sold():
+        s=0
+        for i in Purchase.list_of_count_of_each_item_sold:
+            s+=i
+        return s
+
+p=Purchase()
+p.sell_items(["JAM", "CHOcolates", "Ghee", "Soap"])
+print(Purchase.find_total_items_sold(),Purchase.list_of_count_of_each_item_sold,p.get_item_on_offer())
+
 
             
 
