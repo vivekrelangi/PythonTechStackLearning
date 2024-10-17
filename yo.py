@@ -6098,7 +6098,7 @@ else:
        
 employee1 = Employee ("John")
 print(employee1.get_discount())"""
-class Purchase:
+"""class Purchase:
     list_of_items=['Apple', 'Biscuits', 'Chocolates', 'Jam', 'Butter', 'Milk', 'Soap', 'Hand Sanitizer']
     list_of_count_of_each_item_sold=[0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -6147,7 +6147,769 @@ class Purchase:
 
 p=Purchase()
 p.sell_items(["JAM", "CHOcolates", "Ghee", "Soap"])
-print(Purchase.find_total_items_sold(),Purchase.list_of_count_of_each_item_sold,p.get_item_on_offer())
+print(Purchase.find_total_items_sold(),Purchase.list_of_count_of_each_item_sold,p.get_item_on_offer())"""
+"""class Dog:
+    counter=100
+    dog_breed_dict={"Labrador Retriever":5, "German Shepherd":12, "Beagle":10}
+    def __init__(self, breed_list, accessories_required):
+        self.__dog_id_list=[]
+        self.__breed_list=breed_list
+        self.__accessories_required=accessories_required
+        self.__price=0
+
+    def get_dog_id_list(self):
+        return self.__dog_id_list
+
+    def get_breed_list(self):
+        return self.__breed_list
+
+    def get_accessories_required(self):
+        return self.__accessories_required
+
+    def get_price(self):
+        return self.__price
+
+    def get_dog_price(self, breed):
+        if breed=="Labrador Retriever":
+            return 800
+        elif breed=="German Shepherd":
+            return 1230
+        elif breed=="Beagle":
+            return 650
+
+    def generate_dog_id(self, breed):
+        Dog.counter+=1
+        dog_id=breed[0]+str(Dog.counter)
+        return dog_id
+
+    def validate_breed(self):
+        for breed in self.__breed_list:
+            if breed in Dog.dog_breed_dict.keys():
+                continue
+            else:
+                return False
+        return True
+
+    def validate_quantity(self):
+        for breed in self.__breed_list:
+            if Dog.dog_breed_dict[breed]>=1:
+                continue
+            else:
+                return False
+        return True
+
+    def calculate_total_price(self):
+        if self.validate_breed() and self.validate_quantity():
+            for breed in self.__breed_list:
+                Dog.dog_breed_dict[breed]-=1
+                self.__dog_id_list.append(self.generate_dog_id(breed))
+                self.__price+=self.get_dog_price(breed)
+            if self.__accessories_required:
+                self.__price+=350
+            if self.__price>1500:
+                self.__price-=(self.__price/20)
+            return self.__price
+        elif self.validate_breed() == False:
+            return -1
+        elif self.validate_quantity() == False:
+            return -2
+
+d=Dog(["Labrador Retriever", "German Shepherd", "Beagle"], True)
+print(d.calculate_total_price())"""
+"""class Tollbooth:
+    def __init__(self):
+        self.__no_of_vehicle=0
+        self.__total_amount=0
+
+    def get_no_of_vehicle(self):
+        return self.__no_of_vehicle
+
+    def get_total_amount(self):
+        return self.__total_amount
+
+    def calculate_amount(self, vehicle_type):
+        if vehicle_type.lower() == "car":
+            self.__total_amount+=70
+        elif vehicle_type.lower() == "bus":
+            self.__total_amount+=100
+        elif vehicle_type.lower() == "truck":
+            self.__total_amount+=150
+        else:
+            self.__total_amount+=70
+
+    def count_vehicle(self):
+        self.__no_of_vehicle+=1
+
+    def collect_toll(self, owner_type, vehicle_type):
+        if owner_type.lower() == "vip":
+            self.count_vehicle()
+        else:
+            self.count_vehicle()
+            self.calculate_amount(vehicle_type)
+
+t=Tollbooth()
+t.collect_toll("Vip","Truck")
+t.collect_toll("p","caR")
+print(t.get_no_of_vehicle(),t.get_total_amount())"""
+"""import time
+import datetime
+class GarmentOrder:
+    garment_dict={"shirt":[45,400,30],"trousers":[250,500,25],"saree":[500,750,10],"jersey": [750,200,5]}
+    def __init__(self, cloth_type, no_of_piece):
+        self.__cloth_type=cloth_type
+        self.__no_of_piece=no_of_piece
+        self.__delivery_date=None
+        self.__order_date=time.strftime("%d/%m/%Y")
+    
+    def get_cloth_type(self):
+        return self.__cloth_type
+    
+    def get_no_of_piece(self):
+        return self.__no_of_piece
+
+    def get_delivery_date(self):
+        return self.__delivery_date
+
+    def get_order_date(self):
+        return self.__order_date
+
+    def take_order(self):
+        if self.__cloth_type in GarmentOrder.garment_dict.keys():
+            if self.__no_of_piece <= GarmentOrder.garment_dict[self.__cloth_type][0]:
+                calculated_amount=self.calculate_amount()
+                self.update_stock()
+                return calculated_amount
+            else:
+                print("insufficient no. of pieces")
+                return -1
+        print("invalid cloth type")
+        return -1
+
+    def calculate_amount(self):
+        total_amount=self.__no_of_piece*GarmentOrder.garment_dict[self.__cloth_type][1]
+        return total_amount
+
+    def update_stock(self):
+        #order_date = datetime.datetime.strptime(self.__order_date, "%d/%m/%y")
+        #d = order_date + datetime.timedelta(days=GarmentOrder.garment_dict[self.__cloth_type][2])
+        d = datetime.date.today()+datetime.timedelta(days=GarmentOrder.garment_dict[self.__cloth_type][2])#d.strftime("%d/%m/%Y")
+        self.__delivery_date=d.strftime("%d/%m/%Y")
+        GarmentOrder.garment_dict[self.__cloth_type][0]-=self.__no_of_piece
+        #print(d, self.__delivery_date)
+
+g=GarmentOrder("shirt",40)
+print(g.take_order(), g.get_order_date())
+print(g.get_delivery_date(), GarmentOrder.garment_dict)"""
+"""class Laptop:
+    def __init__(self, grcode, expiry):
+        self.__grcode = grcode
+        self.__expiry = expiry
+
+    def get_grcode(self):
+        return self.__grcode
+
+    def get_expiry(self):
+        return self.__expiry
+
+
+class Scanner:
+    #self.__emp_laptop_dict = {} 
+
+    def __init__(self, emp_laptop_dict):
+        self.__emp_laptop_dict = emp_laptop_dict
+        #emp_laptop_dict=emp_laptop_dict
+
+    def validate_expiry_date(self, laptop):
+        return not laptop.get_expiry()
+
+    def validate_emp_laptop(self, empid, laptop):
+        if empid in self.__emp_laptop_dict:
+            assigned_laptop = self.__emp_laptop_dict[empid]
+            if assigned_laptop.get_grcode() == laptop.get_grcode():
+                return self.validate_expiry_date(assigned_laptop)
+        return False
+
+    def scan(self, empid, laptop):
+        return self.validate_emp_laptop(empid, laptop)
+
+
+# Test the implementation
+
+# Creating Laptop objects
+laptop1 = Laptop("QR001", False)  # Not expired
+laptop2 = Laptop("QR002", True)   # Expired
+laptop3 = Laptop("QR003", False)  # Not expired
+laptop4 = Laptop("QR004", False)  # Not expired
+
+# Step 2: Initializing emp_laptop_dict with employee ID as the key and Laptop objects as values
+emp_laptop_dict = {
+    101: laptop1,  # Employee 101 is assigned laptop1 (QR001)
+    102: laptop2,  # Employee 102 is assigned laptop2 (QR002)
+    103: laptop3   # Employee 103 is assigned laptop3 (QR003)
+}
+
+# Step 3: Creating a Scanner object using the emp_laptop_dict
+scanner = Scanner(emp_laptop_dict)
+
+# Step 4: Testing the scan method by passing different empid and laptop combinations
+print(scanner.scan(101, laptop1))  # Expected: True (Correct laptop, not expired)
+print(scanner.scan(102, laptop2))  # Expected: False (Laptop is expired)
+print(scanner.scan(103, laptop1))  # Expected: False (Employee 103 does not have laptop1)
+print(scanner.scan(101, laptop3))  # Expected: False (Employee 101 does not have laptop3)
+print(scanner.scan(103, laptop3))  # Expected: True (Correct laptop, not expired)
+print(scanner.scan(104, laptop4))  # Expected: False (Employee 104 is not in the dictionary)"""
+"""class Laptop:
+    def __init__(self, grcode, expiry):
+        self.__grcode=grcode
+        self.__expiry=expiry
+
+    def get_grcode(self):
+        return self.__grcode
+
+    def get_expiry(self):
+        return self.__expiry
+        
+class Scanner:
+    emp_laptop_dict={"101":Laptop("QR001",False)}
+    def __init__(self, emp_laptop_dict):
+        Scanner.emp_laptop_dict=emp_laptop_dict
+        self.__emp_laptop_dict=emp_laptop_dict
+    
+    def get_emp_laptop_dict(self):
+        return self.__emp_laptop_dict
+
+    def validate_expiry_date(self, laptop):
+        if laptop.get_expiry():
+            return False
+        return True
+
+    def validate_emp_laptop(self, emp_id, laptop):
+        if emp_id in Scanner.emp_laptop_dict.keys() and Scanner.emp_laptop_dict[emp_id] == laptop:
+            return True
+        return False
+
+    def scan(self, empid, laptop):
+        if self.validate_emp_laptop(empid, laptop):
+            if self.validate_expiry_date(laptop):
+                return True
+            else:
+                print("Expired")
+                return False
+        else:
+            print("empid invalid")
+            return False
+
+l1=Laptop("QR001",True)
+l2=Laptop("QR002",False)
+l3=Laptop("QR003",True)
+dictonary={1:l1,2:l2,3:l3}
+s=Scanner({'7555':['OOP_101_7'], '8632':['OOP_101_8'], '1682':['OOP_101_9']})
+print(s.scan('7555', Laptop(grcode="GR777" , expiry=False)))
+#submitted code with a failed test case due to incorrect problem statement"""
+"""
+#Practice Problem 7
+class Employee: 
+    __employee_count = 1000 
+    def __init__(self): 
+        self.__employee_id = self.generate_employee_id() 
+        #@staticmethod 
+    def generate_employee_id(self): 
+        Employee.__employee_count += 1 
+        return "E"+str(Employee.__employee_count)
+
+class Project: 
+    def __init__(self, project_id, number_of_employees): 
+        self.__project_id = project_id 
+        self.__number_of_employees = number_of_employees
+    
+    def get_project_id(self):
+        return self.__project_id
+
+    def get_number_of_employees(self):
+        return self.__number_of_employees
+
+    def update_number_of_employees(self): 
+        self.__number_of_employees += 1
+
+class Department: 
+    __dep_project_list = [] 
+    __employee_dict = {} 
+    @staticmethod 
+    def add_project(project_list): 
+        if len(Department.__dep_project_list) + len(project_list) <= 5: 
+            Department.__dep_project_list.extend(project_list) 
+        else: 
+            return -1 
+    @staticmethod 
+    def add_employee(employee, project_id): 
+        project = next((p for p in Department.__dep_project_list if p.get_project_id() == project_id), None) 
+        if not project: 
+            print("Project not available in the department") 
+            return -1 
+        if project.get_number_of_employees() >= 10: 
+            print("Project already has 10 employees") 
+            return -2 
+        employee_id = employee.generate_employee_id() 
+        Department.__employee_dict[employee_id] = project_id 
+        project.update_number_of_employees()
+
+p1=Project(1,1)
+p2=Project(2,2)
+p3=Project(3,3)
+p_list=[p1,p2,p3]
+Department.add_project(p_list)
+e1=Employee()
+e2=Employee()
+Department.add_employee(e1,1)
+Department.add_employee(e2,3)
+print(p1.get_number_of_employees(),p2.get_number_of_employees(),p3.get_number_of_employees())
+#solved test cases not passed"""
+"""class CabRepository:
+    cab_type_list=["Hatch Back", "Sedan", "SUV"]
+    charge_per_km=[9, 12, 5]
+    no_of_cars=[2, 5, 10]
+
+class CabService:
+    __counter=1000
+    def __init__(self, cab_type, distance_in_kms):
+        self.__cab_type=cab_type
+        self.__distance_in_kms=distance_in_kms
+        self.__service_id=None
+
+    def get_cab_type(self):
+        return self.__cab_type
+
+    def get_distance_in_kms(self):
+        return self.__distance_in_kms
+
+    def get_service_id(self):
+        return self.__service_id
+
+    def get_cab_charge(self):
+        pass
+
+    def calculate_waiting_charge(self, waiting_time_mins):
+        if waiting_time_mins <= 30:
+            return 0
+        else:
+            return (waiting_time_mins-30)*5
+
+    def get_cab_charge(self, index):
+        return CabRepository.charge_per_km[index]
+
+    def booking(self, waiting_time_mins):
+        if self.check_availability()!=-1:
+            ind=self.check_availability()
+            cab_charge=self.get_cab_charge(ind)*self.__distance_in_kms
+            waiting_charge=self.calculate_waiting_charge(waiting_time_mins)
+            CabRepository.no_of_cars[ind]-=1
+            CabService.__counter+=1
+            self.__service_id=CabService.__counter
+            return cab_charge+waiting_charge
+        else:
+            return -1
+
+    def check_availability(self):
+        if self.__cab_type in CabRepository.cab_type_list and CabRepository.no_of_cars[CabRepository.cab_type_list.index(self.__cab_type)]>0:
+            return CabRepository.cab_type_list.index(self.__cab_type)
+        else:
+            return -1
+        
+# c=CabService("SUV", 10)
+# print(c.booking(31))
+#cab_type-Hatch Back,distance_in_kms-10,cab_type_list-['Sedan', 'SUV', 'Hatch Back'],_CabService__counter-1000,charge_per_km-[17, 15, 13],no_of_cars-[1, 2, 0]
+CabRepository.cab_type_list=['Sedan', 'SUV', 'Hatch Back']
+CabService._CabService__counter=1000
+CabRepository.charge_per_km=[17, 15, 13]
+CabRepository.no_of_cars=[1, 2, 0]
+c=CabService("Hatch Black",7)
+print(c.check_availability())"""
+"""class SmartCard:
+    def __init__(self, card_no):
+        self.__card_no=card_no
+        self.__account_balance=500
+
+    def get_card_no(self):
+        return self.__card_no
+    
+    def get_account_balance(self):
+        return self.__account_balance
+    
+    def set_account_balance(self, account_balance):
+        self.__account_balance=account_balance
+
+class Employee:
+    def __init__(self,employee_id, employee_name, smart_card):
+        self.__employee_id=employee_id
+        self.__employee_name=employee_name
+        self.smart_card=smart_card
+
+    def get_employee_id(self):
+        return self.__employee_id
+    
+    def get_employee_name(self):
+        return self.__employee_name
+    
+    def validate_employee_id(self):
+        if 1001<=self.__employee_id<=700000:
+            return True
+        return False
+    
+    def validate_card_no(self):
+        def checkallnum(l):
+            for i in l:
+                if i.isdigit():
+                    continue
+                else:
+                    return False
+            return True
+        card_no=self.smart_card.get_card_no()
+        if len(card_no) == 9:
+            if card_no[:3]=="INF":
+                if checkallnum(card_no[3:9]):
+                    return True
+        return False
+    
+class Transaction:
+    def __init__(self):
+        self.__transaction_id=None
+
+    def get_transaction_id(self):
+        return self.__transaction_id
+    
+    def top_up_card(self, employee, amount):
+        if 500<=amount<=10000:
+            if employee.validate_employee_id() and employee.validate_card_no():
+                existing_balance=employee.smart_card.get_account_balance()
+                amount+=existing_balance
+                employee.smart_card.set_account_balance(amount)
+                return "all fine"
+            else:
+                print("Invalid: ",employee.validate_employee_id(),employee.validate_card_no())
+                return -1
+        else:
+            return -1
+    
+    def make_payment(self, employee, amount):
+        existing_balance=employee.smart_card.get_account_balance()
+        if amount<=existing_balance:
+            if employee.validate_employee_id() and existing_balance!=None:
+                if existing_balance-amount>=500:
+                    a=existing_balance-amount
+                    employee.smart_card.set_account_balance(a)
+                    card_no=employee.smart_card.get_card_no()
+                    emp_id=employee.get_employee_id()
+                    self.__transaction_id="T"+str(emp_id)[0]+str(card_no[3:5])
+                    return "all fine"
+        return -1
+    
+s=SmartCard("INF012345")
+print(s.get_account_balance())
+e=Employee(1001,"Emp1",s)
+t=Transaction()
+print(t.top_up_card(e,500))
+print(s.get_account_balance())
+print(t.make_payment(e,500))
+print(s.get_account_balance())"""
+"""class Consultant:
+    def __init__(self, name, registered_company_list, vacancy_list, registered_student_dict):
+        self.__name=name
+        self.__registered_company_list=registered_company_list
+        self.__vacancy_list=vacancy_list
+        self.__registered_student_dict=registered_student_dict
+
+    def get_name(self):
+        return self.__name
+    
+    def get_registered_company_list(self):
+        return self.__registered_company_list
+    
+    def get_vacancy_list(self):
+        return self.__vacancy_list
+    
+    def get_registered_student_dict(self):
+        return self.__registered_student_dict
+    
+    def validate_vacancy(self, company_name):
+        if company_name in self.__registered_company_list:
+            if self.__vacancy_list[self.__registered_company_list.index(company_name)] > 0:
+                return self.__registered_company_list.index(company_name)
+        return -1
+    
+    def register_student_for_placement(self, index, student_id):
+        self.__vacancy_list[index]-=1
+        self.__registered_student_dict[self.__registered_company_list[index]].append(student_id)
+
+class Student:
+    def __init__(self, name, student_id, branch, aggregate_percentage, year_of_passing):
+        self.__name=name
+        self.__student_id=student_id
+        self.__branch=branch
+        self.__aggregate_percentage=aggregate_percentage
+        self.__year_of_passing=year_of_passing
+
+    def get_name(self):
+        return self.__name
+    
+    def get_student_id(self):
+        return self.__student_id
+    
+    def get_branch(self):
+        return self.__branch
+    
+    def get_aggregate_percentage(self):
+        return self.__aggregate_percentage
+    
+    def get_year_of_passing(self):
+        return self.__year_of_passing
+    
+    def check_eligibility(self):
+        if self.__aggregate_percentage>=65 and self.__year_of_passing==2015:
+            return True
+        return False
+    
+    def apply_for_job(self, company_name, consultant):
+        if consultant.validate_vacancy(company_name) != -1:
+            if self.check_eligibility():
+                ind=consultant.validate_vacancy(company_name)
+                consultant.register_student_for_placement(ind, self.__student_id)
+                return "all fine"
+            else:
+                return -1
+        else:
+            return -1
+        
+s=Student("Athadu",101,"CSE",65,2015)
+c=Consultant("Athanu",["Meta","Amazon","Apple","Netflix","Google"],[10,10,10,10,10],{"Meta":[102,103],"Amazon":[104],"Apple":[105],"Netflix":[106],"Google":[107]})
+print(s.apply_for_job("Meta",c))"""
+"""class Letter:
+    counter=1
+    def __init__(self, sender_area, receiver_area):
+        self.__sender_area=sender_area
+        self.__receiver_area=receiver_area
+        self.letter_id=Letter.counter
+        Letter.counter+=1
+
+    def get_sender_area(self):
+        return self.__sender_area
+    
+    def get_receiver_area(self):
+        return self.__receiver_area
+    
+class PostMan:
+    counter=100
+    def __init__(self, name):
+        PostMan.counter+=1
+        self.postman_id="P"+str(PostMan.counter)
+        self.__name=name
+        self.__post_list_to_deliver=[]
+
+    def get_name(self):
+        return self.__name
+    
+    def get_post_list_to_deliver(self):
+        return self.__post_list_to_deliver
+    
+    # def set_post_list_to_deliver(self, letter):
+    #     self.__post_list_to_deliver.append(letter)
+    
+class PostOffice:
+    def __init__(self, area_list, postmen_list):
+        self.__area_list=area_list
+        self.__postmen_list=postmen_list
+
+    def get_area_list(self):
+        return self.__area_list
+    
+    def get_postmen_list(self):
+        return self.__postmen_list
+    
+    def validate_letter(self, letter):
+        receiver_area=letter.get_receiver_area()
+        if receiver_area in self.__area_list:
+            return self.__area_list.index(receiver_area)
+        return -1
+    
+    def allocate_posts(self, letter_list):
+        invalid_letter_list=[]
+        for letter in letter_list:
+            if self.validate_letter(letter) != -1:
+                ind = self.validate_letter(letter)
+                #self.__postmen_list[ind].set_post_list_to_deliver(letter)
+                self.__postmen_list[ind]._PostMan__post_list_to_deliver.append(letter)
+            else:
+                invalid_letter_list.append(letter)
+        return invalid_letter_list
+    
+l1=Letter("HYD","KKD")
+pman=PostMan("ThePostMan")
+p_list=[pman]
+a_list=["KKD"]
+poffice=PostOffice(a_list,p_list)
+l_list=[l1]
+poffice.allocate_posts(l_list)
+print(pman.get_post_list_to_deliver())"""
+"""
+#Practice Problem 13 (Test cased not passed)
+class Security:
+    employee_list=[]
+    visitor_list=[]
+    def __init__(self, employee_list):
+        Security.employee_list=employee_list
+        for emp in employee_list:
+            Security.visitor_list.append(None)
+    
+    def security_check(self, employee, visitor):
+        if employee in Security.employee_list:
+            if visitor == Security.visitor_list[Security.employee_list.index(employee)]:
+                if visitor.get_valid_id() in ["Passport", "Voter id", "PAN Card"]:
+                    return True
+        return False
+    
+class Employee:
+    def __init__(self, employee_name, employee_id):
+        self.__employee_name=employee_name
+        self.__employee_id=employee_id
+
+    def get_employee_name(self):
+        return self.__employee_name
+    
+    def get_employee_id(self):
+        return self.__employee_id
+    
+    def register_visitor(self, visitor):
+        emp_ids=[]
+        inds=[]
+        for i,emp in enumerate(Security.employee_list):
+            inds.append(i)
+            emp_ids.append(emp.get_employee_id())
+        if self.__employee_id in emp_ids:
+            if Security.visitor_list[inds[emp_ids.index(self.__employee_id)]] == None:
+                if visitor.get_relationship_with_emp() in ["Parent","Sibling","Spouse","Child"]:
+                    Security.visitor_list[inds[emp_ids.index(self.__employee_id)]]=visitor
+                    return True
+        return False
+    
+class Visitor:
+    def __init__(self, visitor_name, relationship_with_emp, valid_id):
+        self.__visitor_name=visitor_name
+        self.__relationship_with_emp=relationship_with_emp
+        self.__valid_id=valid_id
+
+    def get_visitor_name(self):
+        return self.__visitor_name
+    
+    def get_relationship_with_emp(self):
+        return self.__relationship_with_emp
+    
+    def get_valid_id(self):
+        return self.__valid_id
+    
+e=Employee("emp1",101)
+v=Visitor("vst1","Parent","Passport")
+s=Security([e])
+print(Security.employee_list, Security.visitor_list)
+e.register_visitor(v)
+print(Security.employee_list, Security.visitor_list)
+print(v)"""
+"""class OnlinePortal:
+    item_list=[]
+    quantity_list=[]
+    price_list=[]
+    @staticmethod
+    def search_item(item):
+        if item in OnlinePortal.item_list:
+            return OnlinePortal.item_list.index(item)
+        return -1
+    
+    @staticmethod
+    def place_order(index, emi, quantity):
+        OnlinePortal.quantity_list[index]-=quantity
+        total_cost=OnlinePortal.price_list[index]*quantity
+        if emi:
+            total_cost+=(total_cost*0.02)
+        else:
+            total_cost-=(total_cost*0.02)
+        return total_cost
+    
+    @staticmethod
+    def add_stock(item_name, quantity):
+        if OnlinePortal.search_item(item_name) != -1:
+            if OnlinePortal.quantity_list[OnlinePortal.item_list.index(item_name)] <= 10:
+                OnlinePortal.quantity_list[OnlinePortal.item_list.index(item_name)]+=quantity
+            else:
+                print("quantity is sufficent")
+                return -1
+        else:
+            print("item does not exist")
+            return -2
+        
+    @staticmethod    
+    def add_item(item_name, price, quantity):
+        if OnlinePortal.search_item(item_name) != -1:
+            return -2
+        else:
+            OnlinePortal.item_list.append(item_name)
+            OnlinePortal.price_list.append(price)
+            OnlinePortal.quantity_list.append(quantity)
+
+class Buyer:
+    def __init__(self, name, email_id):
+        self.__name=name
+        self.__email_id=email_id
+
+    def get_name(self):
+        return self.__name
+    
+    def get_email_id(self):
+        return self.__email_id
+    
+    def purchase(self, item_name, quantity, emi):
+        if OnlinePortal.search_item(item_name) != -1:
+            index=OnlinePortal.search_item(item_name)
+            if OnlinePortal.quantity_list[index]>=quantity:
+                cost=OnlinePortal.place_order(index,emi,quantity)
+                return cost
+            else:
+                return -1
+        else:
+            return -2
+        
+# b=Buyer("buyer1","buyer1@yo.com")
+# o=OnlinePortal()
+# print(b.purchase("sugar",1,True))
+OnlinePortal.price_list=[7000, 21000, 30000, 13000]
+OnlinePortal.quantity_list=[30, 20, 11, 22]
+OnlinePortal.item_list=['Acer', 'Motorola', 'Blackberry', 'Sony']      
+print(OnlinePortal.add_stock("Nokia",10))"""          
+
+
+
+    
+
+
+
+
+
+        
+
+
+        
+
+
+
+    
+        
+
+
+
+
+    
+
+        
+
+
+    
 
 
             
